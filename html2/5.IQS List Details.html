@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	
+
+	<script type="text/javascript" src="../js/common/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript">
+		$( document ).ready( function(){
+			var temp=location.href.split("?");
+
+			if(temp[1] != undefined || temp[1] != null){
+
+				var data=temp[1].split(":");
+				
+				if(data[0] == 'search'){
+					$('#beforeSearch').hide();
+					$('#afterSearch').show();
+					$('#totCnt').html("124");
+					$('.paging').show();
+				}else{
+					$('#afterSearch').hide();
+					$('#beforeSearch').show();
+					$('#totCnt').html("0");
+					$('.paging').hide();
+				}
+				
+				//처리상태 변경(접수통보 -> 수수료부과)
+				/*if(data[1] != undefined){
+					$('#'+data[1]).html("수수료부과");
+				}*/
+			}	else {
+				$('#afterSearch').hide();
+				$('#beforeSearch').show();
+				$('#totCnt').html("0");
+				$('.paging').hide();
+			}
+
+	
+		});
+		
+		var send = function(){
+			if (confirm("Do you want to transfer?") == true){
+					//이미지 로딩
+					$('.wrap-loading').removeClass('display-none');
+
+					setInterval(function() {
+						$('.wrap-loading').addClass('display-none');
+						alert("Transfer complete");
+						$('#formDeclaration').attr('action', './2.Declaration List.html?search').submit();
+						
+     				return false;
+					}, 1000);
+			} else {
+				return;
+			}
+			
+		};
+		
+		function popupEvent(fileName, he) {
+			var popupSize = 'width=1050,height='+ he +',status=no,scrollbars=yes,resizable=yes';
+			var url = './' + fileName + '.html?search';
+			window.open(url, '', popupSize);
+		}
+		
+		/* ********************************************************
+     * 행추가 기능
+     ******************************************************** */ 
+		function rowAdd(){
+			var idx = $('#commodityTr_num').val();
+			var html = "";
+			
+			html += '<tr>';
+			html += '<td><input type="radio" name="rdCommodity" title="선택" value="" /></td>';
+			html += '<td>'+idx+'</td>';
+			html += '<td>fruits<input type="hidden" name="HS코드0" value="100KG" /></td>';
+			html += '<td>10 (UN) UNIT<input type="hidden" name="물품설명0" value="" /></td>';
+			html += '<td><input type="hidden" name="무게0" value="" /></td>';
+			html += '<td><input type="hidden" name="식물학명0" value="fruits" /></td>';
+			html += '<td>usa<input type="hidden" name="원산지 국가0" value="" /></td>';
+			html += '</tr>';
+								
+			$('#commodityTable').append(html);
+			
+			idx++;
+    	$('#commodityTr_num').val(idx);
+		}
+		
+		/* ********************************************************
+     * 체크박스 선택행 삭제 기능
+     ******************************************************** */
+		function rowCheDel(){
+    	var $obj = $("input[name='rdCommodity']:checked");
+    	var checkCount = $obj.size();
+    	
+    	if(checkCount > 0){
+    		$obj.parent().parent().remove();
+    		var idx = $('#commodityTr_num').val();
+    		idx--;
+    		$('#commodityTr_num').val(idx);
+    	}else{
+    		alert("Please select an Commodity to delete");
+    	}
+    	
+    	//console.log("checkCount : ", checkCount);
+    	
+    }
+    
+    /* ********************************************************
+     * 행추가 기능
+     ******************************************************** */ 
+		function rowAdd2(){
+			var html = "";
+			
+			html += '<tr>';
+			html += '<td><input type="radio" name="rdAttach" title="선택" value="" /></td>';
+			html += '<td class="align_l">NO.777777777</td>';
+			html += '<td>102</td>';
+			html += '<td class="align_l">Pro-forma Invoice.txt</td>';
+			html += '<td>11/07/2017</td>';
+			html += '</tr>';
+								
+			$('#attachTable').append(html);
+		}
+		
+		/* ********************************************************
+     * 체크박스 선택행 삭제 기능
+     ******************************************************** */
+		function rowCheDel2(){
+    	var $obj = $("input[name='rdAttach']:checked");
+    	var checkCount = $obj.size();
+    	
+    	if(checkCount > 0){
+    		$obj.parent().parent().remove();
+    	}else{
+    		alert("Please select an attachment to delete");
+    	}
+    }
+    
+    function save(){
+			/*if (confirm("Do you want to reject?") == true){
+				alert("rejected");
+				window.location.href="./Internal_2.Declaration Verification.html?search";
+			} else {
+				return;
+			}*/
+			
+			alert("Successfully saved");
+			window.location.href="./5.IQS List.html?search";
+		}
+		
+	</script>
+	<title>Declaration Verification Details</title>
+</head>
+<body>
+	<div class="wrap-body">
+		<div class="content">
+			<div class="content-work">
+				<div class="work-area"><h2 class="page-title">IQS List  Details
+					</h2>
+					<form id="formDeclaration" name="formDeclaration" method="post" enctype="multipart/form-data">
+						<input type="hidden" id="commodityTr_num" name="commodityTr_num" value="3" />
+						<br><br>
+						<!-- 조회 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="16%" />
+									<col width="34%" />
+									<col width="16%" />
+									<col width="34%" />
+								</colgroup>
+								<tr>
+									<th>Declaration No.</th>
+									<td colspan="3">
+										<!-- 신고번호 -->
+										<input type="text" id="docSerial1" name="docSerial1" title="docSerial1" value="TFDA" size="3" maxlength="4" />-
+										<input type="text" id="docSerial2" name="docSerial2" title="docSerial2" value="" size="1" maxlength="3" />-
+										<input type="text" id="docSerial3" name="docSerial3" title="docSerial3" value="17" size="1" maxlength="2" />-
+										<input type="text" id="docSerial4" name="docSerial4" title="docSerial4" value="00015" size="4" maxlength="5" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 조회 영역 끝 -->	
+						<div class="btn-area">
+							<div class="align_l">
+								<a href="#" class="btn-03 round">Reset</a>
+							</div>
+							<div class="align_r">
+								<a href="./5.IQS List Details.html?search:FMHA-PIA-17-00015" class="btn-03 round">Search</a>
+							</div>
+							<div style="clear:both;"></div>
+							<hr class="split" />
+						</div>
+						<br><br>
+						<!-- 조회결과 영역 시작 -->
+						
+						<div id="afterSearch">
+	
+						<h2 class="area-title">General</h2>
+						<!-- Declaration General 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Declaration No.</th>
+									<td>
+										<!-- Declaration No. -->
+										TFDA--17-00015
+									</td>
+									<th>Declaration Date</th>
+									<td>
+										<!-- Declaration Date -->
+										20/06/2017 16:19:23 
+									</td>
+								</tr>
+								<tr>
+									<th>Ex/Importer</th>
+									<td>
+										<!-- Ex/Importer -->
+										SP LLC Dream Production
+									</td>
+									<th>Declarant</th>
+									<td>
+										<!-- Declarant -->
+										SP LLC Dream Production
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- Declaration General 영역 끝 -->
+						</div>
+						<!-- 일반정보 영역 시작 -->
+						<div class="input-area2">
+							<table>
+								<colgroup>
+									<col width="50%" />
+									<col width="50%" />
+								</colgroup>
+								<tr>
+									<td></td>
+									<th>
+										<font color="blue">Verification Officer</font>[28/06/2017 12:15:11]<br><br>
+										PLEASE ATTACH INVOICE
+									</th>
+								</tr>
+								<tr>
+									<th>
+										<font color="blue">Declarant</font>[29/06/2017 16:23:34]<br><br>
+										PLEASE PROCEED
+									</th>
+									<td></td>
+								</tr>
+								<tr>
+									<td></td>
+									<th>
+										<font color="blue">Verification Officer</font>[29/06/2017 17:07:25]<br><br>
+										PLEASE ATTACH INVOICE AGAIN
+									</th>
+								</tr>
+							</table>
+						</div>
+						<!-- 일반정보 영역 끝 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Opinion<span class="must">*</span></th>
+									<td colspan="3">
+										<!-- 신고일자 -->
+										<textarea id="비고" name="비고" title="비고" style="width: 96%;" rows="3" maxlength="4000" placeholder=""></textarea>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</form>
+					<hr class="split" />
+					<div class="btn-area">
+						<div class="align_r">
+							<a href="javascript:save();" class="btn-03 round">Save</a>
+							<a href="./5.IQS List.html?search" class="btn-03 round">Cancel</a>
+						</div>
+						<div style="clear:both;"></div>
+					</div>
+				</div>
+				<div class="clear:both;"></div>
+			</div>
+		</div>
+		</div>
+	</div>
+</body>
+</html>

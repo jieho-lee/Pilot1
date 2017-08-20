@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	<script type="text/javascript" src="../js/common/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="../js/common/common2.js"></script>
+	<script type="text/javascript">
+		$( document ).ready( function(){
+			var temp=location.href.split("?");
+
+			if(temp[1] != undefined || temp[1] != null){
+
+				var data=temp[1].split(":");
+				
+				if(data[0] == 'search'){
+					$('#beforeSearch').hide();
+					$('#afterSearch').show();
+					$('#totCnt').html("1");
+					$('.paging').show();
+				}else{
+					$('#afterSearch').hide();
+					$('#beforeSearch').show();
+					$('#totCnt').html("0");
+					$('.paging').hide();
+				}
+			}	else {
+				$('#afterSearch').hide();
+				$('#beforeSearch').show();
+				$('#totCnt').html("0");
+				$('.paging').hide();
+			}
+	
+		});
+		
+		function popupEvent(fileName, seq) {
+			var popupSize = 'width=1050,height=800,status=no,scrollbars=yes,resizable=yes';
+			var url = './' + fileName + '.html?' + seq;
+			window.open(url, '', popupSize);
+		}
+	</script>
+	<title>IQS List</title>
+</head>
+<body>
+	<div class="wrap-body">
+		<div class="content">
+			<div class="content-work">
+				<div class="work-area">
+					<h2 class="page-title">
+					IQS(Integration Query System) List
+					</h2>
+					<form id="stbiAppBscs" name="stbiAppBscs" enctype="multipart/form-data">
+						<input type="hidden" name="searchCondition" value="${searchCondition}" />
+						<!--<h2 class="area-title">Search Condition</h2>-->
+						<br><br>
+						<!-- 조회 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="16%" />
+									<col width="34%" />
+									<col width="16%" />
+									<col width="34%" />
+								</colgroup>
+								<tr>
+									<th>Declaration Date<span class="must">*</span></th>
+									<td>
+										<!-- 신고일자 -->
+										<input type="text" id="신고일자" name="신고일자" title="신고일자" value="07/06/2017" size="8" maxlength="10" /> <a href="#" onclick="return false;"><img src="../images/common/btn-cal.png" align="middle" alt="달력" /></a>~
+										<input type="text" id="신고일자" name="신고일자" title="신고일자" value="07/07/2017" size="8" maxlength="10" /> <a href="#" onclick="return false;"><img src="../images/common/btn-cal.png" align="middle" alt="달력" /></a>
+										<input type="button" onclick="alert('사용자ID유효성검증');return false;" value="1D" class="btn-02 round" />
+										<input type="button" onclick="alert('사용자ID유효성검증');return false;" value="-1W" class="btn-02 round" />
+										<input type="button" onclick="alert('사용자ID유효성검증');return false;" value="-1M" class="btn-02 round" />
+										<input type="button" onclick="alert('사용자ID유효성검증');return false;" value="-3M" class="btn-02 round" />
+									</td>
+								
+									<th>Registration Date<span class="must">*</span></th>
+									<td>
+										<!-- 신고일자 -->
+										<input type="text" id="신고일자" name="신고일자" title="신고일자" value="07/06/2017" size="8" maxlength="10" /> <a href="#" onclick="return false;"><img src="../images/common/btn-cal.png" align="middle" alt="달력" /></a>~
+										<input type="text" id="신고일자" name="신고일자" title="신고일자" value="07/07/2017" size="8" maxlength="10" /> <a href="#" onclick="return false;"><img src="../images/common/btn-cal.png" align="middle" alt="달력" /></a>
+										<input type="button" onclick="alert('사용자ID유효성검증');return false;" value="1D" class="btn-02 round" />
+										<input type="button" onclick="alert('사용자ID유효성검증');return false;" value="-1W" class="btn-02 round" />
+										<input type="button" onclick="alert('사용자ID유효성검증');return false;" value="-1M" class="btn-02 round" />
+										<input type="button" onclick="alert('사용자ID유효성검증');return false;" value="-3M" class="btn-02 round" />
+									</td>
+								</tr>
+								<tr>
+									<th>Reference No.</th>
+									<td>
+										<input type="text" id="신고번호1" name="신고번호1" title="신고번호" value="" size="10" maxlength="8" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="" size="2" maxlength="4" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="" size="5" maxlength="7" />
+									</td>
+									<th>Declaration No.</th>
+									<td>
+										<!-- 신고번호 -->										
+										<input type="text" id="신고번호1" name="신고번호1" title="신고번호" value="" size="3" maxlength="4" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="" size="1" maxlength="3" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="" size="1" maxlength="2" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="" size="4" maxlength="5" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 조회 영역 끝 -->	
+					</form>
+						<div class="btn-area">
+							<div class="align_r">
+								<a href="./5.IQS List.html?search" class="btn-03 round">Search</a>
+							</div>
+							<div style="clear:both;"></div>
+							<hr class="split" />
+						</div>
+						
+						<!-- 조회결과 정보 영역 시작 -->
+						<div class="page-info-area">
+							<div class="align_l">
+								<div>
+									Total Count : <strong><span id=totCnt></span></strong>
+									| 
+									<select class="combo" name="pageSize">
+										<option value="10">10</option>
+										<option value="20">20</option>
+										<option value="30">30</option>
+										<option value="40">40</option>
+										<option value="50">50</option>
+									</select>
+								</div>
+							</div>
+							<div class="clear:both;"></div>
+						</div>
+						<!-- 조회결과 정보 영역 끝 -->
+						<!-- 조회결과 영역 시작 -->
+						<div class="grid-area" id="beforeSearch">
+							<table summary="" style="word-wrap:break-word;word-break:break-all;">
+								<thead>
+									<tr>
+										<th width="40">No.</th>
+										<th width="110">Reference No.</th>
+										<th width="110">Declaration No.</th>
+										<th width="110">Declaration Date</th>
+										<th width="110">Registration Date</th>
+										<th width="110">Registered by</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td colspan="6">No results were found</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- 조회결과 영역 끝 -->
+						<!-- 조회결과 영역 시작 -->
+						<div class="grid-area" id="afterSearch">
+							<table summary="" style="word-wrap:break-word;word-break:break-all;">
+								<thead>
+									<tr>
+										<th width="40">No.</th>
+										<th width="110">Reference No.</th>
+										<th width="110">Declaration No.</th>
+										<th width="110">Declaration Date</th>
+										<th width="110">Registration Date</th>
+										<th width="110">Registered by</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>207196079-17-0000015</td>
+										<td><a href="./5.IQS List Details.html?search">TFDA--17-00015</a></td>
+										<td>27/06/2017 16:19:23</td>
+										<td>29/06/2017 17:07:25</td>
+										<td>OFFICER_01</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- 조회결과 영역 끝 -->
+						<!-- 조회결과 그리드 영역 끝 -->
+						<div class="paging">
+							<a href="#" class="ibtn"><img src="../images/common/btn-first.png" /></a>
+							<a href="#" class="ibtn"><img src="../images/common/btn-prev.png" /></a>
+							<a href="#" class="on">1</a>
+							<a href="#" class="ibtn"><img src="../images/common/btn-next.png" /></a>
+							<a href="#" class="ibtn"><img src="../images/common/btn-last.png" /></a>
+						</div>
+				</div>
+				<div class="clear:both;"></div>
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>

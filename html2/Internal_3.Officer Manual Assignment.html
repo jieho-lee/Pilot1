@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	<script type="text/javascript" src="../js/common/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="../js/common/common2.js"></script>
+	<script type="text/javascript">
+		$( document ).ready( function(){
+			var temp=location.href.split("?");
+			
+			if(temp[1] != undefined || temp[1] != null){
+
+				var data=temp[1].split(":");
+				
+				console.log("3:",data);
+				
+				if(data[0] == 'search'){
+					//$('#beforeSearch').hide();
+					$('.grid-area-left').show();
+					$('.grid-area-right').show();
+					$('.page-info-area').show();
+					$('#executeDiv').show();
+					$('#totCnt').html("4");
+				}else{
+					$('.grid-area-left').hide();
+					$('.grid-area-right').hide();
+					$('.page-info-area').hide();
+					$('#executeDiv').hide();
+					$('#totCnt').html("0");
+					$('.paging').hide();
+				}
+				
+				//처리상태 변경(접수통보 -> 수수료부과)
+				/*if(data[1] != undefined){
+					$('#'+data[1]).html("수수료부과");
+				}*/
+			}	else {
+				$('.grid-area-left').hide();
+				$('.grid-area-right').hide();
+				$('.page-info-area').hide();
+				$('#executeDiv').hide();
+				$('#totCnt').html("0");
+				$('.paging').hide();
+			}
+			
+			
+			
+			$("input[name='rdiManager']:radio").change(function () {
+				var managerNm = this.value;
+				//alert(managerNm);
+				
+				var $obj = $("input[name='listChk']");
+    		var checkCount = $obj.size();
+    		//alert(checkCount);
+    		for (var i=0; i<checkCount; i++){
+				if($obj.eq(i).is(":checked")){
+    			//alert(i);
+    			//$obj.eq(i).parent().parent().remove();
+    			$('#officer'+i).html(managerNm);
+    		}
+    	}
+				
+			});
+			 
+	
+		});
+		
+		function execute(){
+			//신청서 체크
+    	var $obj = $("input[name='listChk']:checked");
+    	var checkCount = $obj.size();
+
+    	if(checkCount < 1){
+    		alert("Select Declaration");
+    		return;
+    	}
+    	
+    	var $obj2 = $("input[name='rdiManager']:checked");
+    	var radioCount = $obj2.size();
+
+    	if(radioCount < 1){
+    		alert("Select a verification officer");
+    		return;
+    	}
+    	
+    	alert("Successfully Assigned");
+    	window.location.href = "./Internal_3.Officer Manual Assignment List.html?search";
+    }
+    
+	</script>
+	<title>Officer Assignment</title>
+</head>
+<body>
+	<div class="wrap-body">
+		<div class="content">
+			<div class="content-work">
+				<div class="work-area">
+					<h2 class="page-title">
+					Officer Assignment
+					</h2>
+					<form id="stbiAppBscs" name="stbiAppBscs" enctype="multipart/form-data">
+						<!--<h2 class="area-title">Search Condition</h2>-->
+						<br><br>
+						<!-- 조회 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="37%" />
+									<col width="17%" />
+									<col width="29%" />
+								</colgroup>
+								<tr>
+									<th>Declaration Date<span class="must">*</span></th>
+									<td>
+										<!-- 신고일자 -->
+										<input type="text" id="신고일자" name="신고일자" title="신고일자" value="07/06/2017" size="10" maxlength="10" /> <a href="#" onclick="return false;"><img src="../images/common/btn-cal.png" align="middle" alt="달력" /></a>~
+										<input type="text" id="신고일자" name="신고일자" title="신고일자" value="07/07/2017" size="10" maxlength="10" /> <a href="#" onclick="return false;"><img src="../images/common/btn-cal.png" align="middle" alt="달력" /></a>
+										<input type="button" onclick="alert('사용자ID유효성검증');return false;" value="1D" class="btn-02 round" />
+										<input type="button" onclick="alert('사용자ID유효성검증');return false;" value="-1W" class="btn-02 round" />
+										<input type="button" onclick="alert('사용자ID유효성검증');return false;" value="-1M" class="btn-02 round" />
+										<input type="button" onclick="alert('사용자ID유효성검증');return false;" value="-3M" class="btn-02 round" />
+									</td>
+									<th>Declaration No.</th>
+									<td>
+										<!-- 신고번호 -->										
+										<input type="text" id="신고번호1" name="신고번호1" title="신고번호" value="" size="3" maxlength="4" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="" size="1" maxlength="3" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="" size="1" maxlength="2" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="" size="4" maxlength="5" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 조회 영역 끝 -->	
+					</form>
+						<div class="btn-area">
+							<!--<div class="align_l">
+								<a href="#" class="btn-03 round">Reset</a>
+							</div>-->
+							<div class="align_r">
+								<a href="./Internal_3.Officer Manual Assignment.html?search" class="btn-03 round">Search</a>
+							</div>
+							<div style="clear:both;"></div>
+							<hr class="split" />
+						</div>
+						
+						<!-- 조회결과 정보 영역 시작 -->
+						<div class="page-info-area">
+							<div class="align_l">
+								<div>
+									Total Count : <strong><span id=totCnt></span></strong>
+									| 
+									<select class="combo" name="pageSize">
+										<option value="10">10</option>
+										<option value="20">20</option>
+										<option value="30">30</option>
+										<option value="40">40</option>
+										<option value="50">50</option>
+									</select>
+								</div>
+							</div>
+							<div class="clear:both;"></div>
+						</div>
+						<!-- 조회결과 정보 영역 끝 -->
+						<!-- 조회결과 영역 시작 -->
+						<div class="grid-area-left" id="beforeSearch">
+							<table summary="" style="word-wrap:break-word;word-break:break-all;">
+								<thead>
+									<tr>
+										<th width="20"><input type="checkbox" name="" /></th>
+										<th width="140">Declaration No.</th>
+										<th width="80">Date</th>
+										<th width="110">Ex/Importer</th>
+										<th width="90">Entry Office</th>
+										<th width="140">Officer</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><input type="checkbox" name="listChk" /></td>
+										<td>TFDA-PIA-17-00015</td>
+										<td>20/06/2017</td>
+										<td>Dream Production</td>
+										<td></td>
+										<td id="officer0"></td>
+									</tr>
+									<tr>
+										<td><input type="checkbox" name="listChk" /></td>
+										<td>TFDA-PIA-17-00014</td>
+										<td>20/06/2017</td>
+										<td>Dream Production</td>
+										<td></td>
+										<td id="officer1"></td>
+									</tr>
+									<tr>
+										<td><input type="checkbox" name="listChk" /></td>
+										<td>TFDA-PIA-17-00012</td>
+										<td>18/06/2017</td>
+										<td>Dream Production</td>
+										<td></td>
+										<td id="officer2"></td>
+									</tr>
+									<tr>
+										<td><input type="checkbox" name="listChk" /></td>
+										<td>TFDA-PIA-17-00011</td>
+										<td>17/06/2017</td>
+										<td>Dream Production</td>
+										<td></td>
+										<td id="officer3"></td>
+									</tr>
+								</tbody>
+							</table>
+							
+						</div>
+						<!-- 조회결과 영역 끝 -->
+						<!-- 조회결과 영역 시작 -->
+						<div class="grid-area-right" id="beforeSearch">
+							<table summary="" style="word-wrap:break-word;word-break:break-all;">
+								<thead>
+									<tr>
+										<th width="20"></th>
+										<th width="110">ID</th>
+										<th width="130">Name</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><input type="radio" name="rdiManager" value="OFFICER_01" /></td>
+										<td>OFFICER_01</td>
+										<td class="align_l">sahle</td>
+									</tr>
+								</tbody>
+								<tr>
+										<td><input type="radio" name="rdiManager" value="OFFICER_02" /></td>
+										<td>OFFICER_02</td>
+										<td class="align_l">nahom</td>
+									</tr>
+								</tbody>
+								<tr>
+										<td><input type="radio" name="rdiManager" value="OFFICER_01" /></td>
+										<td>OFFICER_01</td>
+										<td class="align_l">getu</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- 조회결과 영역 끝 -->
+						<br>
+					<div class="btn-area" style="float:right;" id="executeDiv">
+						<div class="align_r">
+							<a href="javascript:execute();" class="btn-03 round">Execute</a>
+						</div>
+						<div style="clear:both;"></div>
+					</div>
+						
+						
+				</div>
+				<div class="clear:both;"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

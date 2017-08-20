@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	<script type="text/javascript" src="../js/common/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="../js/common/common2.js"></script>
+	<script type="text/javascript">
+		$( document ).ready( function(){
+			var temp=location.href.split("?");
+			
+			console.log("1:",temp);
+			console.log("2:",temp[1]);
+
+			if(temp[1] != undefined || temp[1] != null){
+
+				var data=temp[1].split(":");
+				
+				console.log("3:",data);
+				
+				if(data[0] == 'search'){
+					$('#beforeSearch').hide();
+					$('#afterSearch').show();
+					$('#totCnt').html("124");
+					$('.paging').show();
+				}else{
+					$('#afterSearch').hide();
+					$('#beforeSearch').show();
+					$('#totCnt').html("0");
+					$('.paging').hide();
+				}
+				
+				//처리상태 변경(접수통보 -> 수수료부과)
+				/*if(data[1] != undefined){
+					$('#'+data[1]).html("수수료부과");
+				}*/
+			}	else {
+				$('#afterSearch').hide();
+				$('#beforeSearch').show();
+				$('#totCnt').html("0");
+				$('.paging').hide();
+			}
+			//var data=temp[1].split(":");
+			//var seq1=data[0];
+			//var seq2=data[1];
+			//alert(data[0]);
+			/*if(data[0] == 'search'){
+				$('#beforeSearch').hide();
+				$('#afterSearch').show();
+				$('#totCnt').html("124");
+				$('.paging').show();
+			}else{
+				$('#afterSearch').hide();
+				$('#beforeSearch').show();
+				$('#totCnt').html("0");
+				$('.paging').hide();
+			}*/
+	
+		});
+	</script>
+	<title>Declaration Acceptance</title>
+</head>
+<body>
+	<div class="wrap-body">
+		<div class="content">
+			<div class="content-work">
+				<div class="work-area">
+					<h2 class="page-title">
+					Application Acceptance
+					</h2>
+					<form id="stbiAppBscs" name="stbiAppBscs" enctype="multipart/form-data">
+						<input type="hidden" name="searchCondition" value="${searchCondition}" />
+						<!--<h2 class="area-title">Search Condition</h2>-->
+						<br><br>
+						<!-- 조회 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Reference Date<span class="must">*</span></th>
+									<td>
+										<!-- 신고일자 -->
+										<input type="text" id="신고일자" name="신고일자" title="신고일자" value="07/06/2017" size="10" maxlength="10" /> <a href="#" onclick="return false;"><img src="../images/common/btn-cal.png" align="middle" alt="달력" /></a>~
+										<input type="text" id="신고일자" name="신고일자" title="신고일자" value="07/07/2017" size="10" maxlength="10" /> <a href="#" onclick="return false;"><img src="../images/common/btn-cal.png" align="middle" alt="달력" /></a>
+									</td>
+									<th>Reference No.</th>
+									<td>
+										<!-- 신고번호 -->										
+										<input type="text" id="신고번호1" name="신고번호1" title="신고번호" value="" size="8" maxlength="9" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="" size="2" maxlength="2" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="" size="5" maxlength="5" />
+									</td>
+								</tr>
+								<tr>
+									<th>Declaration No.</th>
+									<td>
+										<!-- 신고번호 -->										
+										<input type="text" id="신고번호1" name="신고번호1" title="신고번호" value="" size="3" maxlength="4" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="" size="1" maxlength="3" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="" size="1" maxlength="2" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="" size="4" maxlength="5" />
+									</td>
+									<th>Status</th>
+									<td>
+										<!-- 통지 유형 -->
+										<select id="통지 유형" name="통지 유형" title="통지 유형" style="width:200px;">
+											<option value="">ALL</option>
+											<option value="Received">Received</option>
+											<option value="Selected">Selected</option>
+											<option value="Assigned">Assigned</option>
+											<option value="Accepted">Accepted</option>
+											<option value="Verifying">Verifying</option>
+											<option value="Inspected">Inspected</option>
+											<option value="Released">Released</option>
+											<option value="Amendment Received">Amendment Received</option>
+											<option value="Cancellation Received">Cancellation Received</option>
+											<option value="Cancelled">Cancelled</option>
+										</select>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 조회 영역 끝 -->	
+					</form>
+						<div class="btn-area">
+							<div class="align_l">
+								<a href="#" class="btn-03 round">Reset</a>
+							</div>
+							<div class="align_r">
+								<a href="./Internal_1.Declaration Acceptance.html?search" class="btn-03 round">Search</a>
+							</div>
+							<div style="clear:both;"></div>
+							<hr class="split" />
+						</div>
+						
+						<!-- 조회결과 정보 영역 시작 -->
+						<div class="page-info-area">
+							<div class="align_l">
+								<div>
+									Total Count : <strong><span id=totCnt></span></strong>
+									| 
+									<select class="combo" name="pageSize">
+										<option value="10">10</option>
+										<option value="20">20</option>
+										<option value="30">30</option>
+										<option value="40">40</option>
+										<option value="50">50</option>
+									</select>
+								</div>
+							</div>
+							<div class="clear:both;"></div>
+						</div>
+						<!-- 조회결과 정보 영역 끝 -->
+						<!-- 조회결과 영역 시작 -->
+						<div class="grid-area" id="beforeSearch">
+							<table summary="" style="word-wrap:break-word;word-break:break-all;">
+								<thead>
+									<tr>
+										<th width="40">No.</th>
+										<th width="110">Reference No.</th>
+										<th width="110">Reference Date</th>
+										<th width="80">Declarant</th>
+										<th width="110">Exporter/Importer</th>
+										<th width="110">Declaration No.</th>
+										<th width="110">Status Date</th>
+										<th width="60">Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td colspan="8">No results were found</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- 조회결과 영역 끝 -->
+						<!-- 조회결과 영역 시작 -->
+						<div class="grid-area" id="afterSearch">
+							<table summary="" style="word-wrap:break-word;word-break:break-all;">
+								<thead>
+									<tr>
+										<th width="40">No.</th>
+										<th width="110">Reference No.</th>
+										<th width="110">Reference Date</th>
+										<th width="80">Declarant</th>
+										<th width="110">Exporter/Importer</th>
+										<th width="110">Declaration No.</th>
+										<th width="110">Status Date</th>
+										<th width="60">Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td><a href="./Internal_1.Declaration Acceptance Details.html?00015">207196079-17-0000015</a></td>
+										<td>20/06/2017 16:19:23</td>
+										<td title="yacob">207196079</td>
+										<td title="yacob">207196079</td>
+										<td>TFDA-PIA-17-00015</td>
+										<td>20/06/2017 16:19:24</td>
+										<td>Received</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td><a href="./Internal_1.Declaration Acceptance Details.html?00014">207196079-17-0000014</a></td>
+										<td>19/06/2017 11:12:31</td>
+										<td title="yacob">207196079</td>
+										<td title="yacob">207196079</td>
+										<td>TFDA-PIA-17-00014</td>
+										<td>19/06/2017 11:12:33</td>
+										<td>Received</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td><a href="./Internal_1.Declaration Acceptance Details.html?00013">207196079-17-0000011</a></td>
+										<td>19/06/2017 10:23:12</td>
+										<td title="sahle">301146211</td>
+										<td title="sahle">301146211</td>
+										<td>TFDA-PIA-17-00013</td>
+										<td>19/06/2017 10:23:14</td>
+										<td>Received</td>
+									</tr>
+									<tr>
+										<td>4</td>
+										<td><a href="./Internal_1.Declaration Acceptance Details.html?00142">207196079-17-0000010</a></td>
+										<td>18/06/2017 12:10:43</td>
+										<td title="yacob">207196079</td>
+										<td title="yacob">207196079</td>
+										<td>TFDA-PIA-17-00012</td>
+										<td>19/06/2017 14:13:24</td>
+										<td>Accepted</td>
+									</tr>
+									<tr>
+										<td>5</td>
+										<td><a href="./Internal_1.Declaration Acceptance Details.html?00141">207196079-17-0000008</a></td>
+										<td>18/06/2017 11:14:25</td>
+										<td title="sahle">301146211</td>
+										<td title="sahle">301146211</td>
+										<td>TFDA-PIA-17-00011</td>
+										<td>19/06/2017 16:34:55</td>
+										<td>Accepted</td>
+									</tr>
+									<tr>
+										<td>6</td>
+										<td><a href="./Internal_1.Declaration Acceptance Details.html?00012">207196079-17-0000007</a></td>
+										<td>17/06/2017 10:23:12</td>
+										<td title="yacob">207196079</td>
+										<td title="yacob">207196079</td>
+										<td>TFDA-PIA-17-00010</td>
+										<td>19/06/2017 16:13:44</td>
+										<td>Accepted</td>
+									</tr>
+									<tr>
+										<td>7</td>
+										<td><a href="./Internal_1.Declaration Acceptance Details.html?00011">207196079-17-0000006</a></td>
+										<td>17/06/2017 10:11:54</td>
+										<td title="yacob">207196079</td>
+										<td title="yacob">207196079</td>
+										<td>TFDA-PIA-17-00009</td>
+										<td>19/06/2017 11:13:21</td>
+										<td>Accepted</td>
+									</tr>
+									<tr>
+										<td>8</td>
+										<td><a href="./Internal_1.Declaration Acceptance Details.html?00140">207196079-17-0000005</a></td>
+										<td>16/06/2017 17:21:33</td>
+										<td title="yacob">207196079</td>
+										<td title="yacob">207196079</td>
+										<td>TFDA-PIA-17-00008</td>
+										<td>18/06/2017 14:11:32</td>
+										<td>Accepted</td>
+									</tr>
+									<tr>
+										<td>9</td>
+										<td><a href="./Internal_1.Declaration Acceptance Details.html?00010">207196079-17-0000004</a></td>
+										<td>16/06/2017 16:22:23</td>
+										<td title="yacob">207196079</td>
+										<td title="yacob">207196079</td>
+										<td>TFDA-PIA-17-00007</td>
+										<td>18/06/2017 12:14:53</td>
+										<td>Accepted</td>
+									</tr>
+									<tr>
+										<td>10</td>
+										<td><a href="./Internal_1.Declaration Acceptance Details.html?00139">207196079-17-0000003</a></td>
+										<td>15/06/2017 10:31:34</td>
+										<td title="sahle">301146211</td>
+										<td title="sahle">301146211</td>
+										<td>TFDA-PIA-17-00006</td>
+										<td>17/06/2017 15:11:54</td>
+										<td>Accepted</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- 조회결과 영역 끝 -->
+						<!-- 조회결과 그리드 영역 끝 -->
+						<div class="paging">
+							<a href="#" class="ibtn"><img src="../images/common/btn-first.png" /></a>
+							<a href="#" class="ibtn"><img src="../images/common/btn-prev.png" /></a>
+							<a href="#" class="on">1</a>
+							<a href="#">2</a>
+							<a href="#">3</a>
+							<a href="#">4</a>
+							<a href="#">5</a>
+							<a href="#">6</a>
+							<a href="#">7</a>
+							<a href="#">8</a>
+							<a href="#">9</a>
+							<a href="#">10</a>
+							<a href="#" class="ibtn"><img src="../images/common/btn-next.png" /></a>
+							<a href="#" class="ibtn"><img src="../images/common/btn-last.png" /></a>
+						</div>
+				</div>
+				<div class="clear:both;"></div>
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>

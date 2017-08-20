@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	
+
+	<script type="text/javascript" src="../js/common/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript">
+		$( document ).ready( function(){
+			var temp=location.href.split("?");
+
+			if(temp[1] != undefined || temp[1] != null){
+
+				var data=temp[1].split(":");
+				
+				if(data[0] == 'search'){
+					$('#beforeSearch').hide();
+					$('#afterSearch').show();
+					$('#totCnt').html("124");
+					$('.paging').show();
+				}else{
+					$('#afterSearch').hide();
+					$('#beforeSearch').show();
+					$('#totCnt').html("0");
+					$('.paging').hide();
+				}
+				
+				//처리상태 변경(접수통보 -> 수수료부과)
+				/*if(data[1] != undefined){
+					$('#'+data[1]).html("수수료부과");
+				}*/
+			}	else {
+				$('#afterSearch').hide();
+				$('#beforeSearch').show();
+				$('#totCnt').html("0");
+				$('.paging').hide();
+			}
+
+	
+		});
+		
+		function popupEvent(fileName) {
+			var popupSize = 'width=1050,height=610,status=no,scrollbars=yes,resizable=yes';
+			var url = './' + fileName + '.html?search';
+			window.open(url, '', popupSize);
+		}
+		
+		function validation(){
+			var $obj = $("input[name='chkComplete']:checked");
+			var cnt = $obj.size();
+			
+			if(cnt > 0){
+				alert("Validation Complete");
+			}else{
+				alert("put a check mark on ‘Verification Complete'");
+			}
+		}
+		
+		function save(){
+			//if (confirm("Proceed Assessment?") == true){
+				alert("Successfully saved");
+				window.close();	
+			//}else{
+				//return;
+			//}
+		}
+		
+		function goSubmit(){
+			alert("Successfully submitted");
+			window.close();
+		}
+		
+		function delete2(){
+			if (confirm("Do you want to delete?") == true){
+				alert("Successfully deleted");
+				window.close();
+			} else {
+				return;
+			}
+		}
+		
+	</script>
+	<title>Suspension Registration</title>
+</head>
+<body>
+	<div class="wrap-body">
+		<div class="content">
+			<div class="content-work">
+				<div class="work-area">
+					<h2 class="page-title">
+					Suspension Registration
+					</h2>
+					<form id="formDeclaration" name="formDeclaration" method="post" enctype="multipart/form-data">
+						<br><br>
+						
+						<h2 class="area-title">Suspension</h2>
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Importer TIN</th>
+									<td class="align_l">207196079</td>
+									<th>Importer Name</th>
+									<td class="align_l">yacob</td>
+								</tr>
+								<tr>
+									<th>Declarant TIN</th>
+									<td class="align_l">207196079</td>
+									<th>Declarant Name</th>
+									<td class="align_l">yacob</td>
+								</tr>
+								<tr>
+									<th>Declaration Date</th>
+									<td class="align_l">20/06/2017</td>
+									<th>Total Customs Value</th>
+									<td class="align_r">88,000.00</td>
+								</tr>
+								<tr>
+									<th>Remarks</th>
+									<td colspan="3">
+										<!-- 신고일자 -->
+										<textarea id="비고" name="비고" title="비고" style="width: 96%;" rows="5" maxlength="4000" placeholder=""></textarea>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<hr class="split" />
+						<div class="btn-area">
+						<div class="align_r">
+							<a href="javascript:goSubmit();" class="btn-03 round">Submit</a>
+							<a href="javascript:save();" class="btn-03 round">Save</a>
+							<a href="javascript:delete2();" class="btn-03 round">Delete</a>
+							<a href="javascript:window.close();" class="btn-03 round">Cancel</a>
+						</div>
+						<div style="clear:both;"></div>
+					</div>
+					
+					</form>
+
+				</div>
+				<div class="clear:both;"></div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="footer-copyright">
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

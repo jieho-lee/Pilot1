@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	<script type="text/javascript" src="../js/common/jquery-1.11.0.min.js"></script>
+	<!-- <script type="text/javascript" src="../js/common/html.js"></script>
+	<script type="text/javascript" src="../js/common/common.js"></script> -->
+	<title>Application form for Phytosanitary permit</title>
+	<script type="text/javascript">
+		$(function() {
+
+			//신고인 타입 checked설정
+			$("#declarantType1").click(function() {
+				$(this).attr("checked", "checked");
+				$("#declarantType2").removeAttr("checked");
+			});
+			$("#declarantType2").click(function() {
+				$(this).attr("checked", "checked");
+				$("#declarantType1").removeAttr("checked");
+			});
+
+			//copy 체크시 copy실행, 체크 해재시 무응답.
+			$(".copyDeclarant").click(function() {
+				if ($(".copyDeclarant").attr("checked") != "checked") {
+					copy();
+					$(".copyDeclarant").attr("checked", "checked");
+				} else {
+					$(".copyDeclarant").removeAttr("checked");
+				}
+			});
+		});
+
+		function addressSearch() {
+			window.open("address.html", "", "width=400, height=300, left=500, top=300, location=no");
+		}
+
+		//copy 메소드
+		function copy() {
+			//신고인 타입에 따라 수출자 타입 체크
+			if ($("#declarantType1").attr("checked") == "checked") {
+				$(".type2").prop("checked", false);
+				$(".type1").prop("checked", true);
+			}
+			if ($("#declarantType2").attr("checked") == "checked") {
+				$(".type1").prop("checked", false);
+				$(".type2").prop("checked", true);
+			}
+			//각 항목 복사
+			$(".tin").val($("#declarantTIN").val());
+			$(".name").val($("#declarant").val());
+			$(".representative").val($("#declarantRepresentative").val());
+			$(".telephone").val($("#declarantTelephone").val());
+			$(".fax").val($("#declarantFax").val());
+			$(".address1").val($("#declarantAddress1").val());
+			$(".house").val($("#declarantHouse").val());
+			$(".pobox").val($("#declarantPOBOX").val());
+
+		}
+
+	</script>
+
+</head>
+
+<body>
+	<div class="wrap-body">
+		<div class="content">
+			<div class="content-work">
+				<div class="work-area">
+					<h2 class="page-title">
+					Application form for Phytosanitary permit
+					</h2>
+					<form id="stbiAppBscs" name="stbiAppBscs" enctype="multipart/form-data">
+						<input type="hidden" name="searchCondition" value="${searchCondition}" />
+						<h2 class="area-title">Declaration</h2>
+						<!-- 신고정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Reference No.<span class="must">*</span></th>
+									<td>
+										<!-- 제출번호 -->
+										<input type="text" id="제출번호1" name="제출번호1" title="제출번호" value="207196079" size="10" maxlength="8" readonly="readonly" />-
+										<input type="text" id="제출번호2" name="제출번호2" title="제출번호" value="17" size="2" maxlength="4" readonly="readonly" />-
+										<input type="text" id="제출번호3" name="제출번호3" title="제출번호" value="0000003" size="5" maxlength="7" readonly="readonly" /> <input type="button" onclick="alert('신고번호조회');return false;" value="Generate" class="btn-02 round" />
+									</td>
+									<th>Reference Date<span class="must">*</span></th>
+									<td>
+										<!-- 제출일자 -->
+										<input type="text" id="제출일자" name="제출일자" title="제출일자" value="07/06/2017" size="12" maxlength="10" readonly="readonly" /> <a href="#" onclick="return false;"><img src="../images/common/btn-cal.png" align="middle" alt="달력" /></a>
+									</td>
+								</tr>
+								<tr>
+									<th>Declaration Agency<span class="must">*</span></th>
+									<td>
+										<!-- 신고기관명 -->
+										<input type="text" id="신고기관" name="신고기관" title="신고기관" size="35" maxlength="30" value="Declaration Agency" /> <input type="image" onclick="alert('신고기관조회');return false;" src="../images/common/btn-zoom.png" />
+									</td>
+									<th>Declaration No.</th>
+									<td>
+										<!-- 신고번호 -->
+
+									</td>
+								</tr>
+								<tr>
+									<th>Declaration Type<span class="must">*</span></th>
+									<td colspan="3">
+										<!-- 신고구분 -->
+										<input type="radio" name="신고구분코드" title="신고구분" value="import" /> Import
+										<input type="radio" name="신고구분코드" title="신고구분코드" value="export" checked="checked" /> Export
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 신고정보 영역 끝 -->
+
+						<h2 class="area-title">Declarant </h2>
+						<!-- 신고인정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Declarant Type<span class="must">*</span></th>
+									<td>
+										<!-- 신고인구분 -->
+										<input id="declarantType1" type="radio" name="신고인구분코드" title="신고인구분" value="private" /> private
+										<input id="declarantType2" type="radio" name="신고인구분코드" title="신고인구분" value="body corporate" checked="checked" /> body corporate
+									</td>
+									<th>TIN<span class="must">*</span></th>
+									<td>
+										<!-- 신고인고유번호 -->
+										<input type="text" id="declarantTIN" name="신고인고유번호호" title="신고인고유번호" value="207196079" size="40" maxlength="30" />
+									</td>
+								</tr>
+								<tr>
+									<th>Declarant<span class="must">*</span></th>
+									<td>
+										<!-- 신고인명 -->
+										<input type="text" id="declarant" name="신고인명" title="신고인명" value="yacob" size="40" maxlength="15" />
+									</td>
+									<th>Representative</th>
+									<td>
+										<!-- 대표자명 -->
+										<input type="text" id="declarantRepresentative" name="대표자명" title="대표자명" value="sahle" size="40" maxlength="15" />
+									</td>
+								</tr>
+
+								<tr>
+									<th>Telephone<span class="must">*</span></th>
+									<td>
+										<!-- 신청자전화번호 -->
+										<input type="text" id="declarantTelephone" name="신청자전화번호" title="전화번호" value="(251-11)3-72 81 11" size="40" maxlength="14" />
+									</td>
+									<th>Fax</th>
+									<td>
+										<!-- 신청자팩스번호 -->
+										<input type="text" id="declarantFax" name="신청자팩스번호" title="팩스번호" value="(251-11)3-72 81 15" size="40" maxlength="10" />
+									</td>
+								</tr>
+								<tr>
+									<th rowspan="2">Declarant Address
+										<span class="must">*</span></th>
+									<td colspan="3">
+										<!-- 신고인 주소1 -->
+										<input type="text" id="declarantAddress1" name="수하인주소" title="수하인주소" value="Tigray, South, Hintalo Wajirat, Adigudom, 03" size="110" maxlength="100" readonly="readonly" /><input type="image" onclick="addressSearch();" src="../images/common/btn-zoom.png" /><br/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<!-- house No. -->
+										<input type="text" id="declarantHouse" name="House No." title="House No." placeholder="House No." value="" size="30" maxlength="10" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									</td>
+									<td colspan="2">
+										<!-- P.O.BOX -->
+										<input type="text" id="declarantPOBOX" name="P.O.BOX" title="P.O.BOX" placeholder="P.O.BOX" value="" size="30" maxlength="10" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 신고인정보 영역 끝 -->
+
+
+						<h2 class="area-title">Exporter<input type="checkbox" class="copyDeclarant" name="CopyFromDeclarant" /><span> Copy from Declarant</span></h2>
+						<!-- 수출자정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Exporter Type<span class="must">*</span></th>
+									<td>
+										<!-- 수출자구분 -->
+										<input type="radio" class="type1" name="수출자구분코드" title="수출자구분" value="private" /> private
+										<input type="radio" class="type2" name="수출자구분코드" title="수출자구분" value="body corporate" checked="checked" /> body corporate
+									</td>
+									<th>TIN<span class="must">*</span></th>
+									<td>
+										<!-- 수출자고유번호 -->
+										<input type="text" class="tin" name="수출자고유번호" title="수출자고유번호" value="" size="40" maxlength="30" />
+									</td>
+								</tr>
+								<tr>
+									<th>Exporter<span class="must">*</span></th>
+									<td>
+										<!-- 수출자명 -->
+										<input type="text" class="name" name="수출자명" title="수출자명" value="" size="40" maxlength="15" />
+									</td>
+									<th>Representative</th>
+									<td>
+										<!-- 대표자명 -->
+										<input type="text" class="representative" name="대표자명" title="대표자명" value="" size="40" maxlength="15" />
+									</td>
+								</tr>
+
+								<tr>
+									<th>Telephone<span class="must">*</span></th>
+									<td>
+										<!-- 수출자전화번호 -->
+										<input type="text" class="telephone" name="수출자전화번호" title="전화번호" value="" size="40" maxlength="14" />
+									</td>
+									<th>Fax</th>
+									<td>
+										<!-- 수출자팩스번호 -->
+										<input type="text" class="fax" name="수출자팩스번호" title="팩스번호" value="" size="40" maxlength="10" />
+									</td>
+								</tr>
+								<tr>
+									<th rowspan="2">Exporter Address
+										<span class="must">*</span></th>
+									<td colspan="3">
+										<!--수출자 주소1 -->
+										<input type="text" class="address1" name="수하인주소" title="수하인주소" value="" size="110" maxlength="100" readonly="readonly" /><input type="image" onclick="addressSearch();" src="../images/common/btn-zoom.png" /><br/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<!--House No. -->
+										<input type="text" class="house" name="House No." title="House No." placeholder="House No." value="" size="30" maxlength="10" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									</td>
+									<td colspan="2">
+										<!-- P.O.BOX -->
+										<input type="text" class="pobox" name="P.O.BOX" title="P.O.BOX" placeholder="P.O.BOX" value="" size="30" maxlength="10" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 수출자정보 영역 끝 -->
+
+						<h2 class="area-title">Consignee</h2>
+						<!-- 수하인정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Name<span class="must">*</span></th>
+									<td>
+										<!-- 수하인명 -->
+										<input type="text" id="수하인명" name="수하인명" title="수하인명" value="Gildong Hong" size="40" maxlength="14" />
+									</td>
+									<th>Country<span class="must">*</span></th>
+									<td>
+										<!-- 국가 -->
+										<input type="text" id="수하인국가" name="수하인국가" title="수하인국가" size="35" maxlength="30" value="Republic of Korea" /> <input type="image" onclick="alert('국가조회');return false;" src="../images/common/btn-zoom.png" />
+									</td>
+								</tr>
+								<tr>
+									<th>Address<span class="must">*</span></th>
+									<td colspan="3">
+										<!-- 수하인주소 -->
+										<input type="text" id="수하인주소" name="수하인주소" title="수하인주소" value="189, Cheongsa-ro, Seo-gu, Daejeon, Republic of Korea" size="114" maxlength="100" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 수하인정보 영역 끝 -->
+						<h2 class="area-title">General</h2>
+						<!-- 일반정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Means of conveyance<span class="must">*</span></th>
+									<td>
+										<!-- 운송수단 -->
+										<input type="text" id="운송수단" name="운송수단" title="운송수단" value="ship" size="40" maxlength="14" />
+									</td>
+									<th>Point of entry<span class="must">*</span></th>
+									<td>
+										<!-- 진입점 -->
+										<input type="text" id="진입점" name="진입점" title="진입점" value="" size="40" maxlength="14" />
+									</td>
+								</tr>
+								<tr>
+									<th>Date of arrival</th>
+									<td colspan="3">
+										<!-- 도착일자 -->
+										<input type="text" id="도착일자" name="도착일자" title="도착일자" value="07/06/2017" size="12" maxlength="10" readonly="readonly" /> <a href="#" onclick="return false;"><img src="../images/common/btn-cal.png" align="middle" alt="달력" /></a>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 일반정보 영역 끝 -->
+						<h2 class="area-title">Commodity</h2>
+						<!-- 물품정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>HS Code</th>
+									<td colspan="3">
+										<!-- HS코드 -->
+										<input type="text" id="HS코드" name="HS코드" title="HS코드" value="9999-99-9999" size="35" maxlength="20" /> <input type="image" onclick="alert('HS code 조회');return false;" src="../images/common/btn-zoom.png" />
+									</td>
+								</tr>
+								<tr>
+									<th>Varieties</th>
+									<td>
+										<!-- 물품상표명 -->
+										<input type="text" id="품종" name="품종" title="품종" size="40" maxlength="300" />
+									</td>
+									<th>Quantity<span class="must">*</span></th>
+									<td>
+										<!-- 수량단위코드 -->
+										<input type="text" id="수량" name="수량" title="수량" class="align_r" style="width: 37%;" maxlength="11,3" />
+										<select id="수량단위코드" name="수량단위코드" title="수량단위코드">
+											<option value=" (UN) UNIT"> (UN) UNIT</option>
+											<option value=" (GR) GRAM"> (GR) GRAM</option>
+											<option value=" (KG) KILOGRAM"> (KG) KILOGRAM</option>
+											<option value=" (CM) CENTIMETER"> (CM) CENTIMETER</option>
+											<option value=" (M1) METER"> (M1) METER</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>Description of Package</th>
+									<td>
+										<!-- 포장설명 -->
+										<input type="text" id="포장설명" name="포장설명" title="포장설명" size="40" maxlength="20" />
+									</td>
+									<th>Number of Package<span class="must">*</span></th>
+									<td>
+										<!-- 포장수량단위코드 -->
+										<input type="text" id="포장수량" name="포장수량" title="포장수량" class="align_r" style="width: 37%;" maxlength="11,3" />
+										<select id="포장수량단위코드" name="포장수량단위코드" title="포장수량단위코드">
+											<option value=" (UN) UNIT"> (UN) UNIT</option>
+											<option value=" (GR) GRAM"> (GR) GRAM</option>
+											<option value=" (KG) KILOGRAM"> (KG) KILOGRAM</option>
+											<option value=" (CM) CENTIMETER"> (CM) CENTIMETER</option>
+											<option value=" (M1) METER"> (M1) METER</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>Distinguishing marks<span class="must">*</span></th>
+									<td>
+										<!-- 물품보관위치명 -->
+										<input type="text" id="물품표시" name="물품표시" title="물품표시" size="40" maxlength="300" />
+									</td>
+									<th>Country of Orign<span class="must">*</span></th>
+									<td>
+										<!-- 원산지국가 -->
+										<input type="text" id="원산지국가" name="원산지국가" title="원산지국가" size="35" maxlength="30" /> <input type="image" onclick="alert('원산지국가조회');return false;" src="../images/common/btn-zoom.png" />
+									</td>
+								</tr>
+								<tr>
+									<th>Type of plants<span class="must">*</span></th>
+									<td>
+										<!-- 수출국가명 -->
+										<select id="식물종류코드" name="식물종류코드" title="식물종류">
+											<option value="fruits">fruits</option>
+											<option value="seeds">seeds</option>
+											<option value="tubers">tubers</option>
+											<option value="Etc">Etc</option>
+										</select>
+									</td>
+									<th>Name of plants</th>
+									<td>
+										<!-- 물품모델명 -->
+										<input type="text" id="식물이름" name="식물이름" title="식물이름" size="40" maxlength="300" />
+									</td>
+								</tr>
+								<tr>
+									<!-- 물품상표명 -->
+									<th>Botanical name of plants<span class="must">*</span></th>
+									<td colspan="3">
+										<input type="text" id="식물학명" name="식물학명" title="식물학명" size="40" maxlength="300" />
+									</td>
+								</tr>
+
+							</table>
+						</div>
+						<!-- 물품정보 영역 끝 -->
+						<!-- 물품정보 정보 영역 시작 -->
+						<div class="page-info-area">
+							<div class="align_r">
+								<a href="javascript:alert('템플릿다운로드');" class="btn-01 round"><span>Download Template</span></a>
+								<a href="javascript:alert('물품엑셀업로드화면');" class="btn-01 round"><span>Upload Excel</span></a>
+								<a href="javascript:alert('물품엑셀다운로드화면');" class="btn-01 round"><span>Download Excel</span></a>
+								<a href="javascript:alert('물품행추가');" class="btn-01 round"><span>Add</span></a>
+								<a href="javascript:alert('물품행수정');" class="btn-01 round"><span>Mod</span></a>
+								<a href="javascript:alert('물품행삭제');" class="btn-01 round"><span>Del</span></a>
+							</div>
+							<div class="clear:both;"></div>
+						</div>
+						<!-- 물품정보 정보 영역 끝 -->
+						<!-- 물품정보 영역 시작 -->
+						<div class="grid-area">
+							<table summary="" style="word-wrap:break-word;word-break:break-all;">
+								<thead>
+									<tr>
+										<th width="30"><img src="../images/common/icon_select.png" align="middle" alt="선택" /></th>
+										<th width="40">No.</th>
+										<th>Description of <br>Package</th>
+										<th>Number of <br>Package<span class="must">*</span></th>
+										<th>Distinguishing<br>marks<span class="must">*</span></th>
+										<th>Country of <br>Orign<span class="must">*</span></th>
+										<th>Type of <br>plants<span class="must">*</span></th>
+										<th>Name of plants</th>
+										<th>Varieties</th>
+										<th>Quantity<span class="must">*</span></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<input type="radio" name="그리드선택0" title="선택" value="" />
+										</td>
+										<td>
+											1
+										</td>
+										<td>
+											<input type="hidden" name="포장설명0" value="" />
+										</td>
+										<td>
+											100KG
+											<input type="hidden" name="포장수량0" value="100KG" />
+										</td>
+										<td class="align_l">
+											apple
+											<input type="hidden" name="물품표시0" value="사과나무" />
+										</td>
+										<td>
+											usa
+											<input type="hidden" name="원산지국가0" value="미국" />
+										</td>
+										<td class="align_l">
+											fruits
+											<input type="hidden" name="식물종류0" value="fruits
+												" />
+										</td>
+										<td class="align_l">
+											<input type="hidden" name="식물이름0" value="" />
+										</td>
+										<td class="align_l">
+											<input type="hidden" name="품종0" value="" />
+										</td>
+										<td>
+											10
+											<input type="hidden" name="수량0" value="10" /> UNIT
+											<input type="hidden" name="물품수량단위코드0" value="개" />
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="radio" name="그리드선택1" title="선택" value="" />
+										</td>
+										<td>
+											2
+										</td>
+										<td>
+											<input type="hidden" name="포장설명1" value="" />
+										</td>
+										<td>
+											100KG
+											<input type="hidden" name="포장수량1" value="100KG" />
+										</td>
+										<td class="align_l">
+											apple
+											<input type="hidden" name="물품표시1" value="사과나무" />
+										</td>
+										<td>
+											usa
+											<input type="hidden" name="원산지국가1" value="미국" />
+										</td>
+										<td class="align_l">
+											fruits
+											<input type="hidden" name="식물종류1" value="fruits
+												" />
+										</td>
+										<td class="align_l">
+											<input type="hidden" name="식물이름1" value="" />
+										</td>
+										<td class="align_l">
+											<input type="hidden" name="품종1" value="" />
+										</td>
+										<td>
+											10
+											<input type="hidden" name="수량1" value="10" /> UNIT
+											<input type="hidden" name="물품수량단위코드1" value="개" />
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- 물품정보 영역 끝 -->
+
+						<h2 class="area-title">Supporting Document Detail</h2>
+						<!-- 첨부문서정보 영역 시작 -->
+							<!-- <div class="input-area">
+								<table>
+									<colgroup>
+										<col width="17%" />
+										<col width="33%" />
+										<col width="17%" />
+										<col width="33%" />
+									</colgroup>
+									<tr>
+										<th>Attachment Method</th>
+										<td colspan="3">
+											<input type="radio" name="cheombugubun" title="첨부구분" value="scan" checked="checked" /> SCAN
+											<input type="radio" name="cheombugubun" title="첨부구분" value="esw" /> ESW
+										</td>
+									</tr>
+									<tr>
+										<th>Document Type</th>
+										<td colspan="3">
+											<select>
+												<option value="102">102</option>
+											</select>
+											&nbsp;&nbsp;&nbsp;&nbsp;
+											<input type="text" id="DocumentType" name="DocumentType" title="DocumentType" size="40" maxlength="300" />
+										</td>
+									</tr>
+									<tr>
+										<th>Document No.</th>
+										<td colspan="3">
+											<input type="text" id="DocumentType" name="DocumentType" title="DocumentType" size="40" maxlength="300" value="N987654321"/>
+										</td>
+									</tr>
+									<tr class="scanBox">
+										<th>Attachment Document</th>
+										<td colspan="3">
+											<input type="text" id="Attachment Document" name="Attachment Document" title="Attachment Document" size="35" maxlength="30" readonly="readonly" /> <input type="image" onclick="alert('Attachment Document조회');return false;" src="../images/common/btn-zoom.png" />
+										</td>
+									</tr>
+									<tr>
+										<th>Issuing Date</th>
+										<td colspan="3">
+											<input type="text" id="Issuing Date" name="Issuing Date" title="Issuing Date" value="07/06/2017" size="12" maxlength="10" readonly="readonly" /> <a href="#" onclick="return false;"><img src="../images/common/btn-cal.png" align="middle" alt="달력" /></a>
+										</td>
+									</tr>
+
+							</table>
+
+							<script>
+
+								$('input:radio[name=cheombugubun]').bind('click', function() {
+									var cheombugubunValue = $(this).val();
+
+									if (cheombugubunValue == "scan") {
+										$('.scanBox').show();
+									} else if (cheombugubunValue == "esw") {
+										$('.scanBox').hide();
+									}
+								});
+
+							</script>
+
+							<div class="page-info-area">
+								<div class="align_r">
+									<a href="javascript:alert('물품행추가');" class="btn-01 round"><span>Add</span></a>
+									<a href="javascript:alert('물품행수정');" class="btn-01 round"><span>Mod</span></a>
+									<a href="javascript:alert('물품행삭제');" class="btn-01 round"><span>Del</span></a>
+								</div>
+								<div class="clear:both;"></div>
+							</div> -->
+
+						<div class="grid-area">
+							<table summary="" style="word-wrap:break-word;word-break:break-all;">
+								<thead>
+									<tr>
+										<th width="40">No.</th>
+										<th>Supporting Dcoument Name</th>
+										<th>Usage Type</th>
+										<th>Attach</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											1
+										</td>
+										<td class="align_l">
+											Bank Permit
+											<!-- <input type="image" onclick="alert('Bank Permit 조회');return false;" src="../images/common/btn-zoom.png" style="float:right; margin-left:3px;" />
+											<input type="text" id="attach" name="attach" title="attach" size="35" maxlength="20" value="" style="float:right;" /> -->
+										</td>
+										<td>
+											Mandatory
+										</td>
+										<td>
+											<input type="file" name="첨부문서명0" />
+										</td>
+									</tr>
+									<tr>
+										<td>
+											2
+										</td>
+										<td class="align_l">
+											Sales Contract Agreement
+										</td>
+										<td>
+											Mandatory
+										</td>
+										<td>
+											<input type="file" name="첨부문서명1" />
+										</td>
+									</tr>
+									<tr>
+										<td>
+											3
+										</td>
+										<td class="align_l">
+											Import Permit (from importing country)
+										</td>
+										<td>
+											Mandatory
+										</td>
+										<td>
+											<input type="file" name="첨부문서명2" />
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- 첨부문서정보 영역 끝 -->
+					</form>
+					<hr class="split" />
+					<div class="btn-area">
+						<div class="align_r">
+							<a href="#" class="btn-03 round" onclick="popupEvent('UI-POT-0202-001Q_불러오기조회');return false;">Data Retrieval</a>
+							<a href="#" class="btn-03 round">Temporary Save</a>
+							<a href="#" class="btn-03 round">Validate</a>
+							<a href="#" class="btn-03 round">Send</a>
+							<a href="./UI-POT-0402-001S_신청서작성.html" class="btn-03 round">Cancel</a>
+						</div>
+						<div style="clear:both;"></div>
+					</div>
+				</div>
+				<div class="clear:both;"></div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="footer-copyright">
+
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

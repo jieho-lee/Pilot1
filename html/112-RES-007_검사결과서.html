@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	<script type="text/javascript" src="../js/common/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript">
+	$( document ).ready( function(){
+		/* 초기상태 */
+		//큰 조직의 일부
+		$('#recommendedYes').hide();
+		
+		//회사의 큰 조직의 일부 여부		
+		$('input:radio[name=recommended]').bind( 'click' , function(){
+			var recommendedValue = $(this).val();
+			
+			if(recommendedValue == "Yes"){
+				$('#recommendedYes').show();
+			}else if(recommendedValue == "No"){
+				$('#recommendedYes').hide();
+			}
+		});
+		
+	});
+	</script>
+	<title>검사결과서</title>
+</head>
+<body>
+	<div class="wrap-body">
+		<div class="content">
+			<div class="content-work">
+				<div class="work-area">
+					<h2 class="page-title">
+					검사결과서
+					</h2>
+					<form id="stbiAppBscs" name="stbiAppBscs" enctype="multipart/form-data">
+						<input type="hidden" name="searchCondition" value="${searchCondition}" />
+						<h2 class="area-title">LPCO</h2>
+						<!-- LPCO정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>발급번호</th>
+									<td>
+										<!-- 발급번호 -->
+										1102015000000001
+									</td>
+									<th>발급일자</th>
+									<td>
+										<!-- 발급일자 -->
+										07/06/2017
+									</td>
+								</tr>
+								<tr>
+									<th>발급기관</th>
+									<td colspan="3">
+										<!-- 발급기관명 -->
+										Issue Agency
+									</td>
+								</tr>
+								<tr>
+									<th>주소</th>
+									<td colspan="3">
+										<!-- 주소 -->
+										P.O. BOX 2048, Addis Ababa Ethiopia
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- LPCO정보 영역 끝 -->
+						<h2 class="area-title">검사</h2>
+						<!-- 검사정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>검사자</th>
+									<td>
+										<!-- 검사자 -->
+										
+									</td>
+									<th>검사 일자</th>
+									<td>
+										<!-- 검사 일자 -->
+										07/06/2017
+									</td>
+								</tr>
+								<tr>
+									<th>제품상태</th>
+									<td colspan="3">
+										<!-- 제품상태 -->
+										
+									</td>
+								</tr>
+								<tr>
+									<th>샘플링 기술</th>
+									<td colspan="3">
+										<!-- 샘플링 기술 -->
+										
+									</td>
+								</tr>
+								<tr>
+									<th colspan="3">실험실 테스트가 권장되나?</th>
+									<td>
+										<!--  recommended -->
+										<input type="radio" name="recommended" title="recommended" value="Yes" /> Yes
+										<input type="radio" name="recommended" title="recommended" value="No" checked="checked"/> No
+									</td>
+								</tr>
+								<tr id="recommendedYes">
+									<th>제품 명시</th>
+									<td colspan="3">
+										<!-- 제품 명시 -->
+										
+									</td>
+								</tr>
+								<tr>
+									<th>결과</th>
+									<td colspan="3">
+										<!-- 결과 -->
+										Complies
+									</td>
+								</tr>
+								<tr>
+									<th>비고</th>
+									<td colspan="3">
+										<!-- 비고 -->
+										
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 검사정보 영역 끝 -->
+						<h2 class="area-title">신고</h2>
+						<!-- 신고정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>신고번호</th>
+									<td>
+										<!-- 신고번호 -->
+										207196079-2017-0000003
+									</td>
+									<th>신고일자</th>
+									<td>
+										<!-- 신고일자 -->
+										07/06/2017
+									</td>
+								</tr>
+								<tr>
+									<th>신고기관</th>
+									<td>
+										<!-- 신고기관명 -->
+										Declaration Agency
+									</td>
+									<th>신고구분</th>
+									<td>
+										<!-- 신고구분 -->
+										Export
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 신고정보 영역 끝 -->
+						<h2 class="area-title">신고인</h2>
+						<!-- 신고인정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>신고인구분</th>
+									<td>
+										<!-- 신고인구분 -->
+										body corporate
+									</td>
+									<th>납세자고유번호</th>
+									<td>
+										<!-- 납세자고유번호 -->
+										207196079
+									</td>
+								</tr>
+								<tr>
+									<th>신고인</th>
+									<td>
+										<!-- 신고인 -->
+										yacob
+									</td>
+									<th>대표자</th>
+									<td>
+										<!-- 대표자 -->
+										sahle
+									</td>
+								</tr>
+								<tr>
+									<th>업체</th>
+									<td>
+										<!-- 업체 -->
+										SP LLC Dream Production
+									</td>
+									<th>업체납세고유번호</th>
+									<td>
+										<!-- 업체납세고유번호 -->
+										B.N.
+									</td>
+								</tr>
+								<tr>
+									<th>전화번호</th>
+									<td>
+										<!-- 신청자전화번호 -->
+										(251-11)3-72 81 11
+									</td>
+									<th>팩스번호</th>
+									<td>
+										<!-- 신청자팩스번호 -->
+										(251-11)3-72 81 15
+									</td>
+								</tr>
+								<tr>
+									<th>주소</th>
+									<td colspan="3">
+										<!-- 신고인주소 -->
+										Region Zone/Sub-city Woreda Kebele House No P.O.BOX
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 신고인정보 영역 끝 -->
+						<h2 class="area-title">수입자</h2>
+						<!-- 수입자정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>수입자</th>
+									<td colspan="3">
+										<!-- 수입자 -->
+										yacob
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 수입자정보 영역 끝 -->
+						<h2 class="area-title">일반</h2>
+						<!-- 일반정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>입국항</th>
+									<td>
+										<!-- 입국항 -->
+
+									</td>
+									<th>출국항</th>
+									<td>
+										<!-- 출국항 -->
+
+									</td>
+								</tr>
+								<tr>
+									<th>B/L(AWB) No.</th>
+									<td>
+										<!-- B/L(AWB) No. -->
+
+									</td>
+									<th>송장번호</th>
+									<td>
+										<!-- 송장번호 -->
+
+									</td>
+								</tr>
+								<tr>
+									<th>세관신고번호</th>
+									<td colspan="3">
+										<!-- 세관신고번호 -->
+
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 일반정보 영역 끝 -->
+						<h2 class="area-title">물품</h2>
+						<!-- 물품정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>제품설명</th>
+									<td>
+										<!-- 제품설명 -->
+										fruits
+									</td>
+									<th>단위</th>
+									<td>
+										<!-- 수량단위코드 -->
+										(UN) UNIT
+									</td>
+								</tr>
+								<tr>
+									<th>수량</th>
+									<td>
+										<!-- 수량 -->
+										10 (UN) UNIT
+									</td>
+									<th>제조 업체</th>
+									<td>
+										<!-- 제조 업체 -->
+
+									</td>
+								</tr>
+								<tr>
+									<th>제조 국가</th>
+									<td>
+										<!-- 제조 국가 -->
+										usa
+									</td>
+									<th>제조번호</th>
+									<td>
+										<!-- 제조번호 -->
+										
+									</td>
+								</tr>
+								<tr>
+									<th>제조 일자</th>
+									<td>
+										<!-- 제조 일자 -->
+										07/06/2017
+									</td>
+									<th>유효기간</th>
+									<td>
+										<!-- 유효기간 -->
+										07/06/2017 ~ 07/06/2018
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 물품정보 영역 끝 -->
+						<!-- 물품정보 영역 시작 -->
+						<div class="grid-area">
+							<table summary="" style="word-wrap:break-word;word-break:break-all;">
+								<thead>
+									<tr>
+										<th width="30"><img src="../images/common/icon_select.png" align="middle" alt="선택" /></th>
+										<th width="40">번호</th>
+										<th>제품설명</th>
+										<th>단위</th>
+										<th>수량</th>
+										<th>제조 국가</th>
+										<th>제조번호</th>
+										<th>제조 일자</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><input type="radio" name="그리드선택0" title="선택" value="" /></td>
+										<td>1</td>
+										<td>fruits<input type="hidden" name="HS코드0" value="100KG" /></td>
+										<td>(UN) UNIT<input type="hidden" name="물품설명0" value="" /></td>
+										<td>10 (UN) UNIT<input type="hidden" name="Common name0" value="" /></td>
+										<td>usa<input type="hidden" name="무게0" value="" /></td>
+										<td><input type="hidden" name="식물학명0" value="fruits" /></td>
+										<td>07/06/2017<input type="hidden" name="원산지 국가0" value="" /></td>
+									</tr>
+									<tr>
+										<td><input type="radio" name="그리드선택0" title="선택" value="" /></td>
+										<td>2</td>
+										<td>fruits<input type="hidden" name="HS코드0" value="100KG" /></td>
+										<td>(UN) UNIT<input type="hidden" name="물품설명0" value="" /></td>
+										<td>10 (UN) UNIT<input type="hidden" name="Common name0" value="" /></td>
+										<td>usa<input type="hidden" name="무게0" value="" /></td>
+										<td><input type="hidden" name="식물학명0" value="fruits" /></td>
+										<td>07/06/2017<input type="hidden" name="원산지 국가0" value="" /></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- 물품정보 영역 끝 -->
+					</form>
+				</div>
+				<div class="clear:both;"></div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="footer-copyright">
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

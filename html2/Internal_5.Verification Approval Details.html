@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	
+
+	<script type="text/javascript" src="../js/common/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript">
+		$( document ).ready( function(){
+			var temp=location.href.split("?");
+
+			if(temp[1] != undefined || temp[1] != null){
+
+				var data=temp[1].split(":");
+				
+				if(data[0] == 'search'){
+					$('#beforeSearch').hide();
+					$('#afterSearch').show();
+					$('#totCnt').html("124");
+					$('.paging').show();
+				}else{
+					$('#afterSearch').hide();
+					$('#beforeSearch').show();
+					$('#totCnt').html("0");
+					$('.paging').hide();
+				}
+				
+				//처리상태 변경(접수통보 -> 수수료부과)
+				/*if(data[1] != undefined){
+					$('#'+data[1]).html("수수료부과");
+				}*/
+			}	else {
+				$('#afterSearch').hide();
+				$('#beforeSearch').show();
+				$('#totCnt').html("0");
+				$('.paging').hide();
+			}
+
+	
+		});
+		
+		var send = function(){
+			if (confirm("Do you want to transfer?") == true){
+					//이미지 로딩
+					$('.wrap-loading').removeClass('display-none');
+
+					setInterval(function() {
+						$('.wrap-loading').addClass('display-none');
+						alert("Transfer complete");
+						$('#formDeclaration').attr('action', './2.Declaration List.html?search').submit();
+						
+     				return false;
+					}, 1000);
+			} else {
+				return;
+			}
+			
+		};
+		
+		function popupEvent(fileName, he) {
+			var popupSize = 'width=1050,height='+ he +',status=no,scrollbars=yes,resizable=yes';
+			var url = './' + fileName + '.html?search';
+			window.open(url, '', popupSize);
+		}
+		
+		/* ********************************************************
+     * 행추가 기능
+     ******************************************************** */ 
+		function rowAdd(){
+			var idx = $('#commodityTr_num').val();
+			var html = "";
+			
+			html += '<tr>';
+			html += '<td><input type="radio" name="rdCommodity" title="선택" value="" /></td>';
+			html += '<td>'+idx+'</td>';
+			html += '<td>fruits<input type="hidden" name="HS코드0" value="100KG" /></td>';
+			html += '<td>10 (UN) UNIT<input type="hidden" name="물품설명0" value="" /></td>';
+			html += '<td><input type="hidden" name="무게0" value="" /></td>';
+			html += '<td><input type="hidden" name="식물학명0" value="fruits" /></td>';
+			html += '<td>usa<input type="hidden" name="원산지 국가0" value="" /></td>';
+			html += '</tr>';
+								
+			$('#commodityTable').append(html);
+			
+			idx++;
+    	$('#commodityTr_num').val(idx);
+		}
+		
+		/* ********************************************************
+     * 체크박스 선택행 삭제 기능
+     ******************************************************** */
+		function rowCheDel(){
+    	var $obj = $("input[name='rdCommodity']:checked");
+    	var checkCount = $obj.size();
+    	
+    	if(checkCount > 0){
+    		$obj.parent().parent().remove();
+    		var idx = $('#commodityTr_num').val();
+    		idx--;
+    		$('#commodityTr_num').val(idx);
+    	}else{
+    		alert("Please select an Commodity to delete");
+    	}
+    	
+    	//console.log("checkCount : ", checkCount);
+    	
+    }
+    
+    /* ********************************************************
+     * 행추가 기능
+     ******************************************************** */ 
+		function rowAdd2(){
+			var html = "";
+			
+			html += '<tr>';
+			html += '<td><input type="radio" name="rdAttach" title="선택" value="" /></td>';
+			html += '<td class="align_l">NO.777777777</td>';
+			html += '<td>102</td>';
+			html += '<td class="align_l">Pro-forma Invoice.txt</td>';
+			html += '<td>11/07/2017</td>';
+			html += '</tr>';
+								
+			$('#attachTable').append(html);
+		}
+		
+		/* ********************************************************
+     * 체크박스 선택행 삭제 기능
+     ******************************************************** */
+		function rowCheDel2(){
+    	var $obj = $("input[name='rdAttach']:checked");
+    	var checkCount = $obj.size();
+    	
+    	if(checkCount > 0){
+    		$obj.parent().parent().remove();
+    	}else{
+    		alert("Please select an attachment to delete");
+    	}
+    }
+    
+    function approve(){
+			if (confirm("Do you want to approve?") == true){
+				alert("Successfully approved");
+				window.location.href="./Internal_5.Verification Approval.html?search";
+			} else {
+				return;
+			}
+			
+		}
+		
+		function reject(){
+				alert("Return");
+				window.location.href="./Internal_5.Verification Approval.html?search";
+			
+		}
+		
+	</script>
+	<title>Verification Approval Details</title>
+</head>
+<body>
+	<div class="wrap-body">
+		<div class="content">
+			<div class="content-work">
+				<div class="work-area">
+					<h2 class="page-title">
+					Verification Approval Details
+					</h2>
+					<form id="formDeclaration" name="formDeclaration" method="post" enctype="multipart/form-data">
+						<input type="hidden" id="commodityTr_num" name="commodityTr_num" value="3" />
+						<br><br>
+						
+						
+						<div id="afterSearch">
+						<h2 class="area-title">Declaration</h2>
+						<!-- 신고정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Reference No.</th>
+									<td>
+										207196079-17-0000003
+									</td>
+									<th>Reference Date</th>
+									<td>
+										<!-- 신고일자 -->
+										07/06/2017
+									</td>
+								</tr>
+								<tr>
+									<th>Declaration Agency</th>
+									<td>
+										<!-- 신고기관명 -->
+										Declaration Agency
+									</td>
+									<th>Declaration No.</th>
+									<td>
+										<!-- 신고번호 -->
+										FMHA-PIA-17-00015
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 신고정보 영역 끝 -->
+						<h2 class="area-title">Declarant</h2>
+						<!-- 신고인정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Declarant Type</th>
+									<td>
+										<!-- 신고인구분 -->
+										body corporate
+									</td>
+									<th>TIN</th>
+									<td>
+										<!-- 납세자고유번호 -->
+										207196079
+									</td>
+								</tr>
+								<tr>
+									<th>Declarant</th>
+									<td>
+										<!-- 신고인 -->
+										Tinak Felix
+									</td>
+									<th>Representative</th>
+									<td>
+										<!-- 대표자 -->
+										George
+									</td>
+								</tr>
+								<tr>
+									<th>Telephone</th>
+									<td>
+										<!-- 신청자전화번호 -->
+										(255)3-72 81 11
+									</td>
+									<th>Fax</th>
+									<td>
+										<!-- 신청자팩스번호 -->
+										(255)3-72 81 15
+									</td>
+								</tr>
+								<tr>
+									<th>Declarant
+Address</th>
+									<td colspan="3">
+										<!-- 신고인주소 -->
+										Region Zone/Sub-city Woreda Kebele House No P.O.BOX
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 신고인정보 영역 끝 -->
+						<h2 class="area-title">Importer</h2>
+						<!-- 수입자정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Type</th>
+									<td>
+										<!-- 수입자구분 -->
+										body corporate
+									</td>
+									<th>TIN</th>
+									<td>
+										<!-- 납세고유번호 -->
+										207196079
+									</td>
+								</tr>
+								<tr>
+									<th>Importer</th>
+									<td>
+										<!-- 수입자 -->
+										Tinak Felix
+									</td>
+									<th>Representative</th>
+									<td>
+										<!-- 대표자 -->
+										Geroge
+									</td>
+								</tr>
+								<tr>
+									<th>Telephone</th>
+									<td>
+										<!-- 수입자전화번호 -->
+										(255)3-72 81 11
+									</td>
+									<th>Fax</th>
+									<td>
+										<!-- 수입자팩스번호 -->
+										(255)3-72 81 15
+									</td>
+								</tr>
+								<tr>
+									<th>Importer
+Address</th>
+									<td colspan="3">
+										<!-- 수입자주소 -->
+										Region Zone/Sub-city Mapato House No P.O.BOX
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 수입자정보 영역 끝 -->
+						<h2 class="area-title">Exporter</h2>
+						<!-- 수출자정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="83%" />
+								</colgroup>
+								<tr>
+									<th>Exporter</th>
+									<td colspan="3">
+										<!-- 수출자명 -->
+										bred
+									</td>
+								</tr>
+								<tr>
+									<th>Address</th>
+									<td colspan="3">
+										<!-- 수출자주소 -->
+										Avenue N.W. Washington, D.C
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 수출자정보 영역 끝 -->
+						<h2 class="area-title">General</h2>
+						<!-- 일반정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Port of Entry</th>
+									<td>
+										<!-- 입국항 -->
+										
+									</td>
+									<th>Method of Payment</th>
+									<td>
+										<!-- 지불방법 -->
+										
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 일반정보 영역 끝 -->
+						<h2 class="area-title">Commodity</h2>
+						<!-- 물품정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Description</th>
+									<td>
+										<!-- 품목설명 -->
+										fruits
+									</td>
+									<th>Quantity</th>
+									<td>
+										<!-- 수량단위코드 -->
+										10 (UN) UNIT
+									</td>
+								</tr>
+								<tr>
+									<th>Unit FOB Pound</th>
+									<td>
+										<!-- 단가(FOB) -->
+
+									</td>
+									<th>Total FOB Pound</th>
+									<td>
+										<!-- 단가(FOB) -->
+
+									</td>
+								</tr>
+								<tr>
+									<th>Country of Origin</th>
+									<td colspan="3">
+										<!-- 원산지 -->
+										usa
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 물품정보 영역 끝 -->
+						<!-- 물품정보 영역 시작 -->
+						<div class="grid-area">
+							<table summary="" style="word-wrap:break-word;word-break:break-all;" id="commodityTable">
+								<thead>
+									<tr>
+										<th width="30"><img src="../images/common/icon_select.png" align="middle" alt="선택" /></th>
+										<th width="40">No.</th>
+										<th>Description</th>
+										<th>Quantity</th>
+										<th>Unit FOB Pound</th>
+										<th>Total FOB Pound</th>
+										<th>Country of Origin</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><input type="radio" name="rdCommodity" title="선택" value="" /></td>
+										<td>1</td>
+										<td>fruits<input type="hidden" name="HS코드0" value="100KG" /></td>
+										<td>10 (UN) UNIT<input type="hidden" name="물품설명0" value="" /></td>
+										<td><input type="hidden" name="무게0" value="" /></td>
+										<td><input type="hidden" name="식물학명0" value="fruits" /></td>
+										<td>usa<input type="hidden" name="원산지 국가0" value="" /></td>
+									</tr>
+									<tr>
+										<td><input type="radio" name="rdCommodity" title="선택" value="" /></td>
+										<td>2</td>
+										<td>fruits<input type="hidden" name="HS코드0" value="100KG" /></td>
+										<td>10 (UN) UNIT<input type="hidden" name="물품설명0" value="" /></td>
+										<td><input type="hidden" name="무게0" value="" /></td>
+										<td><input type="hidden" name="식물학명0" value="fruits" /></td>
+										<td>usa<input type="hidden" name="원산지 국가0" value="" /></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- 물품정보 영역 끝 -->
+						
+						
+						
+						
+						<h2 class="area-title">Supporting Document Detail</h2>
+						<!-- 첨부문서정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Document Type</th>
+									<td colspan="3">
+										<!-- Document Type -->
+										102 Pro-forma Invoice
+									</td>
+								</tr>
+								<tr>
+									<th>Document No.</th>
+									<td colspan="3">
+										<!-- Document No -->
+										NO.777777777
+									</td>
+								</tr>
+								<tr>
+									<th>Attachment Document</th>
+									<td colspan="3">
+										<!-- Attachment Document -->
+										Pro-forma Invoice.txt
+									</td>
+								</tr>
+								<tr>
+									<th>Issuing Date</th>
+									<td colspan="3">
+										<!-- Issuing Date -->
+										11/07/2017
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 첨부문서정보 영역 끝 -->
+						
+						
+						<!--<h2 class="area-title">Supporting Document Detail</h2>-->
+						<!-- 첨부문서정보 영역 시작 -->
+						<div class="grid-area">
+							<table summary="" style="word-wrap:break-word;word-break:break-all;" id="attachTable">
+								<thead>
+									<tr>
+										<th width="30"><img src="../images/common/icon_select.png" align="middle" alt="선택" /></th>
+										<th width="120">Document No.</th>
+										<th width="120">Document Type.</th>
+										<th width="200">Attachment Dcoument</th>
+										<th width="100">Issuing Date</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><input type="radio" name="rdAttach" title="선택" value="" /></td>
+										<td class="align_l">NO.123456789</td>
+										<td>100</td>
+										<td class="align_l">Pro-forma Invoice.txt</td>
+										<td>06/07/2017</td>
+									</tr>
+									<tr>
+										<td><input type="radio" name="rdAttach" title="선택" value="" /></td>
+										<td class="align_l">NO.987654321</td>
+										<td>101</td>
+										<td class="align_l">Pre-import permit application.txt</td>
+										<td>06/07/2017</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						
+						<!-- 첨부문서정보 영역 끝 -->
+						
+						<h2 class="area-title">Approval</h2>
+						<!-- Approval 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Submitted by</th>
+									<td>
+										<!-- Document Type -->
+										yacob
+									</td>
+									<th>Submission Date</th>
+									<td>
+										<!-- Document Type -->
+										25/06/2017 09:55:01
+									</td>
+								</tr>
+								<tr>
+									<th>Approved by</th>
+									<td>
+										<!-- Document Type -->
+										
+									</td>
+									<th>Approval Date</th>
+									<td>
+										<!-- Document Type -->
+										
+									</td>
+								</tr>
+								<tr>
+									<th>Approval Status</th>
+									<td colspan="3">
+										<!-- Document No -->
+										C, Submit
+									</td>
+								</tr>
+								<tr>
+									<th>Approval Remarks</th>
+									<td colspan="3">
+										<!-- Attachment Document -->
+										<textarea id="비고" name="비고" title="비고" style="width: 96%;" rows="4" maxlength="4000" placeholder=""></textarea>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- Approval 영역 끝 -->
+						
+						
+					</form>
+					<hr class="split" />
+					<div class="btn-area">
+						<div class="align_r">
+							<!--<a href="#" class="btn-03 round" onclick="popupEvent('Internal_2_2.Verification Result','350');return false;">Verification Result</a>
+							<a href="#" class="btn-03 round" onclick="popupEvent('Internal_2_2.IQS', '350');return false;">IQS</a>-->
+							<a href="#" class="btn-03 round" onclick="approve();return false;">Approve</a>
+							<a href="#" class="btn-03 round" onclick="reject();return false;">Return</a>
+						</div>
+						<div style="clear:both;"></div>
+					</div>
+				</div>
+				<div class="clear:both;"></div>
+			</div>
+		</div>
+		</div>
+	</div>
+</body>
+</html>

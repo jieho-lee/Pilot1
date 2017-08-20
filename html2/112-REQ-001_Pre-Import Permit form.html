@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	<style type="text/css" >
+		.wrap-loading{
+	    position: fixed;
+	    left:0;
+	    right:0;
+	    top:0;
+	    bottom:0;
+	    background: rgba(0,0,0,0.2); /*not in ie */
+	    filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000', endColorstr='#20000000');    /* ie */
+		}
+
+    .wrap-loading div{ /*로딩 이미지*/
+        position: fixed;
+        top:50%;
+        left:50%;
+        margin-left: -21px;
+        margin-top: -21px;
+    }
+
+    .display-none{ /*감추기*/
+        display:none;
+    }
+	</style>
+
+	<script type="text/javascript" src="../js/common/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript">
+		$( document ).ready( function(){
+			
+			$('.newUpload').show();
+			$('.eswUpload').hide();
+			
+			//첨부파일 업로드 구분
+			$('input:radio[name=classification]').bind( 'click' , function(){
+				var classificationValue = $(this).val();
+				
+				if(classificationValue == "NEW"){	//NEW
+					$('.newUpload').show();
+					$('.eswUpload').hide();
+				}else if(classificationValue == "ESW"){	//NEW
+					$('.newUpload').hide();
+					$('.eswUpload').show();
+				}
+			});
+			
+			
+			var temp=location.href.split("?");
+
+			if(temp[1] != undefined || temp[1] != null){
+
+				var data=temp[1].split(":");
+				
+				if(data[0] == 'search'){
+					$('#beforeSearch').hide();
+					$('#afterSearch').show();
+					$('#totCnt').html("124");
+					$('.paging').show();
+				}else{
+					$('#afterSearch').hide();
+					$('#beforeSearch').show();
+					$('#totCnt').html("0");
+					$('.paging').hide();
+				}
+				
+				//처리상태 변경(접수통보 -> 수수료부과)
+				/*if(data[1] != undefined){
+					$('#'+data[1]).html("수수료부과");
+				}*/
+			}	else {
+				$('#afterSearch').hide();
+				$('#beforeSearch').show();
+				$('#totCnt').html("0");
+				$('.paging').hide();
+			}
+
+	
+		});
+		
+		var send = function(){
+			if (confirm("Do you want to transfer?") == true){
+					//이미지 로딩
+					$('.wrap-loading').removeClass('display-none');
+
+					setInterval(function() {
+						$('.wrap-loading').addClass('display-none');
+						alert("Transfer complete");
+						$('#formDeclaration').attr('action', './2.Declaration List.html?search').submit();
+						
+     				return false;
+					}, 1000);
+			} else {
+				return;
+			}
+			
+		};
+		
+		function popupEvent(fileName) {
+			var popupSize = 'width=1050,height=610,status=no,scrollbars=yes,resizable=yes';
+			var url = './' + fileName + '.html?search';
+			window.open(url, '', popupSize);
+		}
+		
+		/* ********************************************************
+     * 행추가 기능
+     ******************************************************** */ 
+		function rowAdd(){
+			var idx = $('#commodityTr_num').val();
+			var html = "";
+			
+			html += '<tr>';
+			html += '<td><input type="radio" name="rdCommodity" title="선택" value="" /></td>';
+			html += '<td>'+idx+'</td>';
+			html += '<td>fruits<input type="hidden" name="HS코드0" value="100KG" /></td>';
+			html += '<td>10 (UN) UNIT<input type="hidden" name="물품설명0" value="" /></td>';
+			html += '<td><input type="hidden" name="무게0" value="" /></td>';
+			html += '<td><input type="hidden" name="식물학명0" value="fruits" /></td>';
+			html += '<td>usa<input type="hidden" name="원산지 국가0" value="" /></td>';
+			html += '</tr>';
+								
+			$('#commodityTable').append(html);
+			
+			idx++;
+    	$('#commodityTr_num').val(idx);
+		}
+		
+		/* ********************************************************
+     * 체크박스 선택행 삭제 기능
+     ******************************************************** */
+		function rowCheDel(){
+    	var $obj = $("input[name='rdCommodity']:checked");
+    	var checkCount = $obj.size();
+    	
+    	if(checkCount > 0){
+    		$obj.parent().parent().remove();
+    		var idx = $('#commodityTr_num').val();
+    		idx--;
+    		$('#commodityTr_num').val(idx);
+    	}else{
+    		alert("Please select an Commodity to delete");
+    	}
+    	
+    	//console.log("checkCount : ", checkCount);
+    	
+    }
+    
+    /* ********************************************************
+     * 행추가 기능
+     ******************************************************** */ 
+		function rowAdd2(){
+			var html = "";
+			
+			html += '<tr>';
+			html += '<td><input type="radio" name="rdAttach" title="선택" value="" /></td>';
+			html += '<td class="align_l">NO.777777777</td>';
+			html += '<td>102</td>';
+			html += '<td class="align_l">Pro-forma Invoice.txt</td>';
+			html += '<td>11/07/2017</td>';
+			html += '</tr>';
+								
+			$('#attachTable').append(html);
+		}
+		
+		/* ********************************************************
+     * 체크박스 선택행 삭제 기능
+     ******************************************************** */
+		function rowCheDel2(){
+    	var $obj = $("input[name='rdAttach']:checked");
+    	var checkCount = $obj.size();
+    	
+    	if(checkCount > 0){
+    		$obj.parent().parent().remove();
+    	}else{
+    		alert("Please select an attachment to delete");
+    	}
+    }
+    
+    function addressSearch() {
+			window.open("address.html", "", "width=400, height=300, left=500, top=300, location=no");
+		}
+		
+	</script>
+	<title>Pre-Import Permit form</title>
+</head>
+<body>
+	<div class="wrap-body">
+		<div class="content">
+			<div class="content-work">
+				<div class="work-area">
+					<h2 class="page-title">
+					Importation Permit form
+					</h2>
+					<form id="formDeclaration" name="formDeclaration" method="post" enctype="multipart/form-data">
+						<input type="hidden" id="commodityTr_num" name="commodityTr_num" value="3" />
+						<h2 class="area-title">Declaration</h2>
+						<!-- 신고정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<!--<th>Declaration No<span class="must">*</span></th>
+									<td>
+										<input type="text" id="신고번호1" name="신고번호1" title="신고번호" value="FMHA" size="3" maxlength="4" readonly="readonly" align="center" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="PIA" size="1" maxlength="3" readonly="readonly" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="17" size="1" maxlength="2" readonly="readonly" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="00012" size="4" maxlength="5" readonly="readonly" /> <input type="button" onclick="alert('Generate Declaration number');return false;" value="Generate" class="btn-02 round" />
+									</td>-->
+									<th>Reference No.<span class="must">*</span></th>
+									<td>
+										<input type="text" id="신고번호1" name="신고번호1" title="신고번호" value="207196079" size="10" maxlength="8" readonly="readonly" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="17" size="1" maxlength="2" readonly="readonly" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="0000015" size="5" maxlength="7" readonly="readonly" /> <input type="button" onclick="alert('generate');return false;" value="generate" class="btn-02 round" />
+									</td>
+									<th>Reference Date<span class="must">*</span></th>
+									<td>
+										<!-- 신고일자 -->
+										<input type="text" id="신고일자" name="신고일자" title="신고일자" value="07/08/2017" size="12" maxlength="10" readonly="readonly" /> <a href="#" onclick="return false;"><img src="../images/common/btn-cal.png" align="middle" alt="달력" /></a>
+									</td>
+								</tr>
+								<tr>
+									<th>Declaration Agency<span class="must">*</span></th>
+									<td>
+										<!-- 신고기관명 -->
+										<input type="text" id="신고기관" name="신고기관" title="신고기관" size="35" maxlength="30" value="Tanzania Food and Drugs Authority" /> <input type="image" onclick="alert('Declaration Agency inquiry');return false;"src="../images/common/btn-zoom.png" />
+									</td>
+									<th>Application No.</th>
+									<td>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 신고정보 영역 끝 -->
+						<h2 class="area-title">Declarant</h2>
+						<!-- 신고인정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Declarant Type<span class="must">*</span></th>
+									<td>
+										<!-- 신고인구분 -->
+										<input type="radio" name="신고인구분코드" title="신고인구분" value="private" /> private
+										<input type="radio" name="신고인구분코드" title="신고인구분" value="body corporate" checked="checked" /> body corporate
+									</td>
+									<th>TIN<span class="must">*</span></th>
+									<td>
+										<!-- 납세자고유번호 -->
+										<input type="text" id="납세자고유번호" name="납세자고유번호" title="납세자고유번호" value="207196079" size="40" maxlength="30" />
+									</td>
+								</tr>
+								<tr>
+									<th>Declarant<span class="must">*</span></th>
+									<td>
+										<!-- 신고인 -->
+										<input type="text" id="신고인" name="신고인" title="신고인" value="Tinka Felix" size="40" maxlength="15" />
+									</td>
+									<th>Representative</th>
+									<td>
+										<!-- 대표자 -->
+										<input type="text" id="대표자" name="대표자" title="대표자" value="George" size="40" maxlength="15" />
+									</td>
+								</tr>
+								<tr>
+									<th>Telephone<span class="must">*</span></th>
+									<td>
+										<!-- 신청자전화번호 -->
+										<input type="text" id="신청자전화번호" name="신청자전화번호" title="전화번호" value="(255-759)372 811" size="40" maxlength="14" />
+									</td>
+									<th>Fax</th>
+									<td>
+										<!-- 신청자팩스번호 -->
+										<input type="text" id="신청자팩스번호" name="신청자팩스번호" title="팩스번호" value="255-759)372 815" size="40" maxlength="10" />
+									</td>
+								</tr>
+								<tr>
+									<th rowspan="2">Declarant Address
+										<span class="must">*</span></th>
+									<td colspan="3">
+										<!-- 신고인 주소1 -->
+										<input type="text" id="declarantAddress1" name="수하인주소" title="수하인주소" value="28 Edward Sokoine Drive,11105 Mchafukoge, Ilala CBD, " size="110" maxlength="100" readonly="readonly" /><input type="image" onclick="javascript:addressSearch();return false;" src="../images/common/btn-zoom.png" /><br/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<!-- house No. -->
+										<input type="text" id="declarantHouse" name="House No." title="House No." placeholder="House No." value="P.O.Box 11491" size="30" maxlength="10" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									</td>
+									<td colspan="2">
+										<!-- P.O.BOX -->
+										<input type="text" id="declarantPOBOX" name="P.O.BOX" title="P.O.BOX" placeholder="P.O.BOX" value="" size="30" maxlength="10" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 신고인정보 영역 끝 -->
+						<h2 class="area-title">Importer</h2>
+						<!-- 수입자정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Type<span class="must">*</span></th>
+									<td>
+										<!-- 수입자구분 -->
+										<input type="radio" name="수입자구분코드" title="수입자구분" value="private" /> private
+										<input type="radio" name="수입자구분코드" title="수입자구분" value="body corporate" checked="checked" /> body corporate
+									</td>
+									<th>TIN<span class="must">*</span></th>
+									<td>
+										<!-- 납세고유번호 -->
+										<input type="text" id="납세고유번호" name="납세고유번호" title="납세고유번호" value="207196079" size="40" maxlength="30" />
+									</td>
+								</tr>
+								<tr>
+									<th>Importer<span class="must">*</span></th>
+									<td>
+										<!-- 수입자 -->
+										<input type="text" id="수입자" name="수입자" title="수입자" value="Tinka Felix" size="40" maxlength="15" />
+									</td>
+									<th>Representative</th>
+									<td>
+										<!-- 대표자 -->
+										<input type="text" id="대표자" name="대표자" title="대표자" value="George" size="40" maxlength="15" />
+									</td>
+								</tr>
+								<tr>
+									<th>Telephone<span class="must">*</span></th>
+									<td>
+										<!-- 수입자전화번호 -->
+										<input type="text" id="수입자전화번호" name="수입자전화번호" title="전화번호" value="(255-11)3-72 81 11" size="40" maxlength="14" />
+									</td>
+									<th>Fax</th>
+									<td>
+										<!-- 수입자팩스번호 -->
+										<input type="text" id="수입자팩스번호" name="수입자팩스번호" title="팩스번호" value="(255-11)3-72 81 15" size="40" maxlength="10" />
+									</td>
+								</tr>
+								<tr>
+									<th rowspan="2">Importer Address
+										<span class="must">*</span></th>
+									<td colspan="3">
+										<!-- 신고인 주소1 -->
+										<input type="text" id="declarantAddress1" name="수하인주소" title="수하인주소" value="28 Edward Sokoine Drive,11105 Mchafukoge" size="110" maxlength="100" readonly="readonly" /><input type="image" onclick="javascript:addressSearch();return false;" src="../images/common/btn-zoom.png" /><br/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<!-- house No. -->
+										<input type="text" id="declarantHouse" name="House No." title="House No." placeholder="House No." value="" size="30" maxlength="10" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									</td>
+									<td colspan="2">
+										<!-- P.O.BOX -->
+										<input type="text" id="declarantPOBOX" name="P.O.BOX" title="P.O.BOX" placeholder="P.O.BOX" value="" size="30" maxlength="10" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 수입자정보 영역 끝 -->
+						<h2 class="area-title">Exporter</h2>
+						<!-- 수출자정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="83%" />
+								</colgroup>
+								<tr>
+									<th>Exporter<span class="must">*</span></th>
+									<td colspan="3">
+										<!-- 수출자명 -->
+										<input type="text" id="수출자" name="수출자" title="수출자" value="Jieho Lee" size="40" maxlength="14" />
+									</td>
+								</tr>
+								<tr>
+									<th>Address</th>
+									<td colspan="3">
+										<!-- 수출자주소 -->
+										<input type="text" id="수출자주소" name="수출자주소" title="수출자주소" value="Cheonsa-Ro 3 Daejeon City" size="114" maxlength="100" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 수출자정보 영역 끝 -->
+						<h2 class="area-title">General</h2>
+						<!-- 일반정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Port of Entry</th>
+									<td>
+										<!-- 입국항 -->
+										<input type="text" id="입국항" name="입국항" title="입국항" size="35" maxlength="30" value="01) DSM" /> <input type="image" onclick="alert('Port of Entry inquiry');return false;"src="../images/common/btn-zoom.png" />
+									</td>
+									<th>Method of Payment</th>
+									<td>
+										<!-- 지불방법 -->
+										<input type="text" id="지불방법" name="지불방법" title="지불방법" size="35" maxlength="30" value="" /> <input type="image" onclick="alert('Method of Payment inquiry');return false;"src="../images/common/btn-zoom.png" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 일반정보 영역 끝 -->
+						<h2 class="area-title">Commodity</h2>
+						<!-- 물품정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Description</th>
+									<td>
+										<!-- 품목설명 -->
+										<input type="text" id="품목설명" name="품목설명" title="품목설명" value="fruits" size="40" maxlength="20" />
+									</td>
+									<th>Quantity<span class="must">*</span></th>
+									<td>
+										<!-- 수량단위코드 -->
+										<input type="text" id="수량" name="수량" title="수량" class="align_r" value="10" style="width: 37%;" maxlength="11,3" />
+										<select id="수량단위코드" name="수량단위코드" title="수량단위코드">
+											<option value=" (UN) UNIT"> (UN) UNIT</option>
+											<option value=" (GR) GRAM"> (GR) GRAM</option>
+											<option value=" (KG) KILOGRAM"> (KG) KILOGRAM</option>
+											<option value=" (CM) CENTIMETER"> (CM) CENTIMETER</option>
+											<option value=" (M1) METER"> (M1) METER</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>Unit FOB Pound<span class="must">*</span></th>
+									<td>
+										<!-- 단가(FOB) -->
+										<input type="text" id="단가(FOB)" name="단가(FOB)" title="단가(FOB)" value="" size="40" maxlength="300" />
+									</td>
+									<th>Total FOB Pound<span class="must">*</span></th>
+									<td>
+										<!-- 단가(FOB) -->
+										<input type="text" id="금액(FOB)" name="금액(FOB)" title="금액(FOB)" value="" size="40" maxlength="300" />
+									</td>
+								</tr>
+								<tr>
+									<th>Country of Origin<span class="must">*</span></th>
+									<td colspan="3">
+										<!-- 원산지 -->
+										<input type="text" id="원산지" name="원산지" title="원산지" size="35" maxlength="30" value="Republic of Korea" /> <input type="image" onclick="alert('Country of Origin inquiry');return false;"src="../images/common/btn-zoom.png" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 물품정보 영역 끝 -->
+						<!-- 물품정보 정보 영역 시작 -->
+						<div class="page-info-area">
+							<div class="align_r">
+								<a href="javascript:alert('Download Template');" class="btn-01 round"><span>Download Template</span></a>
+								<a href="javascript:alert('Upload Excel screen');" class="btn-01 round"><span>Upload Excel</span></a>
+								<a href="javascript:alert('Download Excel screen');" class="btn-01 round"><span>Download Excel</span></a>
+								<a href="javascript:rowAdd();" class="btn-01 round"><span>Add</span></a>
+								<a href="javascript:alert('Edit Item Line');" class="btn-01 round"><span>Mod</span></a>
+								<a href="javascript:rowCheDel();" class="btn-01 round"><span>Del</span></a>
+							</div>
+							<div class="clear:both;"></div>
+						</div>
+						<!-- 물품정보 정보 영역 끝 -->
+						<!-- 물품정보 영역 시작 -->
+						<div class="grid-area">
+							<table summary="" style="word-wrap:break-word;word-break:break-all;" id="commodityTable">
+								<thead>
+									<tr>
+										<th width="30"><img src="../images/common/icon_select.png" align="middle" alt="선택" /></th>
+										<th width="40">No.</th>
+										<th>Description</th>
+										<th>Quantity<span class="must">*</span></th>
+										<th>Unit FOB Pound<span class="must">*</span></th>
+										<th>Total FOB Pound<span class="must">*</span></th>
+										<th>Country of Origin<span class="must">*</span></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><input type="radio" name="rdCommodity" title="선택" value="" /></td>
+										<td>1</td>
+										<td>fruits<input type="hidden" name="HS코드0" value="100KG" /></td>
+										<td>10 (UN) UNIT<input type="hidden" name="물품설명0" value="" /></td>
+										<td><input type="hidden" name="무게0" value="" /></td>
+										<td><input type="hidden" name="식물학명0" value="fruits" /></td>
+										<td>usa<input type="hidden" name="원산지 국가0" value="" /></td>
+									</tr>
+									<tr>
+										<td><input type="radio" name="rdCommodity" title="선택" value="" /></td>
+										<td>2</td>
+										<td>fruits<input type="hidden" name="HS코드0" value="100KG" /></td>
+										<td>10 (UN) UNIT<input type="hidden" name="물품설명0" value="" /></td>
+										<td><input type="hidden" name="무게0" value="" /></td>
+										<td><input type="hidden" name="식물학명0" value="fruits" /></td>
+										<td>usa<input type="hidden" name="원산지 국가0" value="" /></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- 물품정보 영역 끝 -->
+						
+						
+						
+						
+						<h2 class="area-title">Supporting Document Detail</h2>
+						<!-- 첨부문서정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Upload classification<span class="must">*</span></th>
+									<td colspan="3">
+										<!-- 신고인구분 -->
+										<input type="radio" name="classification" title="신고인구분" value="NEW" checked="checked" />NEW
+										<input type="radio" name="classification" title="신고인구분" value="ESW" />ESW
+									</td>
+								</tr>
+								<tr>
+									<th>Document Type</th>
+									<td colspan="3">
+										<!-- Document Type -->
+										<input type="text" id="Document Type" name="Document Type" title="Document Type" value="102" size="5" maxlength="5" />
+										<input type="image" onclick="popupEvent('DocumentList');return false;" src="../images/common/btn-zoom.png" />
+										<input type="text" id="Document Type" name="Document Type" title="Document Type" value="Pro-forma Invoice" size="47" maxlength="47" readonly="readonly" />
+									</td>
+								</tr>
+								<tr>
+									<th>Document No.</th>
+									<td colspan="3">
+										<!-- Document No -->
+										<input type="text" id="Document No" name="Document No" title="Document No" value="NO.777777777" size="60" maxlength="40" />
+									</td>
+								</tr>
+								<tr class="newUpload">
+									<th>Attachment Document<span class="must">*</span></th>
+									<td colspan="3">
+										<!-- Attachment Document -->
+										<input type="file" name="첨부문서명0" />
+									</td>
+								</tr>
+								<tr class="eswUpload">
+									<th>ESW File<span class="must">*</span></th>
+									<td colspan="3">
+										<!-- Issuing Date -->
+										<input type="text" id="Document Type" name="Document Type" title="Document Type" value="" size="50" maxlength="5" readonly="readonly" />
+										<input type="image" onclick="alert('ESW File inquiry');return false;"src="../images/common/btn-zoom.png" />
+									</td>
+								</tr>
+								<tr>
+									<th>Issuing Date</th>
+									<td colspan="3">
+										<!-- Issuing Date -->
+										<input type="text" id="Issuing Date" name="Issuing Date" title="Issuing Date" value="11/07/2017" size="12" maxlength="10" readonly="readonly" /> <a href="#" onclick="return false;"><img src="../images/common/btn-cal.png" align="middle" alt="달력" /></a>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 첨부문서정보 영역 끝 -->
+						<!-- 첨부문서정보 정보 영역 시작 -->
+						<div class="page-info-area">
+							<div class="align_r">
+								<a href="javascript:rowAdd2();" class="btn-01 round"><span>Add</span></a>
+								<a href="javascript:alert('Edit Item Line');" class="btn-01 round"><span>Mod</span></a>
+								<a href="javascript:rowCheDel2();" class="btn-01 round"><span>Del</span></a>
+							</div>
+							<div class="clear:both;"></div>
+						</div>
+						<!-- 첨부문서정보 정보 영역 끝 -->
+						
+						
+						
+						
+						
+						<!--<h2 class="area-title">Supporting Document Detail</h2>-->
+						<!-- 첨부문서정보 영역 시작 -->
+						<div class="grid-area">
+							<table summary="" style="word-wrap:break-word;word-break:break-all;" id="attachTable">
+								<thead>
+									<tr>
+										<th width="30"><img src="../images/common/icon_select.png" align="middle" alt="선택" /></th>
+										<th width="120">Document No.</th>
+										<th width="120">Document Type.</th>
+										<th width="200">Attachment Dcoument</th>
+										<th width="100">Issuing Date</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><input type="radio" name="rdAttach" title="선택" value="" /></td>
+										<td class="align_l">NO.123456789</td>
+										<td>100</td>
+										<td class="align_l">Pro-forma Invoice.txt</td>
+										<td>06/07/2017</td>
+									</tr>
+									<tr>
+										<td><input type="radio" name="rdAttach" title="선택" value="" /></td>
+										<td class="align_l">NO.987654321</td>
+										<td>101</td>
+										<td class="align_l">Pre-import permit application.txt</td>
+										<td>06/07/2017</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- 첨부문서정보 영역 끝 -->
+					</form>
+					<hr class="split" />
+					<div class="btn-area">
+						<div class="align_r">
+							<a href="#" class="btn-03 round" onclick="popupEvent('2_2.Declaration Data Retrieval');return false;">Data Retrieval</a>
+							<a href="javascript:alert('Temporary Save');" class="btn-03 round">Temporary Save</a>
+							<a href="javascript:alert('Validate');" class="btn-03 round">Validate</a>
+							<a href="#" class="btn-03 round" onClick="send();">Send</a>
+							<a href="./2.Declaration List.html" class="btn-03 round">Cancel</a>
+						</div>
+						<div style="clear:both;"></div>
+					</div>
+				</div>
+				<div class="clear:both;"></div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="footer-copyright">
+
+			</div>
+		</div>
+	</div>
+</body>
+<div class="wrap-loading display-none">
+    <div><img src="../images/common/loading.gif" width="91" height="100" /></div>
+</div>
+</html>

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	<script type="text/javascript" src="../js/common/jquery-1.11.0.min.js"></script>
+	<title>수입반출허가 신청서</title>
+</head>
+<body>
+	<div class="wrap-body">
+		<div class="content">
+			<div class="content-work">
+				<div class="work-area">
+					<h2 class="page-title">
+					수입반출허가 신청서
+					</h2>
+					<form id="stbiAppBscs" name="stbiAppBscs" enctype="multipart/form-data">
+						<input type="hidden" name="searchCondition" value="${searchCondition}" />
+						<h2 class="area-title">신고</h2>
+						<!-- 신고정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>신고번호<span class="must">*</span></th>
+									<td>
+										<!-- 신고번호 -->
+										<input type="text" id="신고번호1" name="신고번호1" title="신고번호" value="207196079" size="10" maxlength="8" readonly="readonly" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="2017" size="2" maxlength="4" readonly="readonly" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="0000003" size="5" maxlength="7" readonly="readonly" /> <input type="button" onclick="alert('신고번호조회');return false;" value="번호생성" class="btn-02 round" />
+									</td>
+									<th>신고일자<span class="must">*</span></th>
+									<td>
+										<!-- 신고일자 -->
+										<input type="text" id="신고일자" name="신고일자" title="신고일자" value="07/06/2017" size="12" maxlength="10" readonly="readonly" /> <a href="#" onclick="return false;"><img src="../images/common/btn-cal.png" align="middle" alt="달력" /></a>
+									</td>
+								</tr>
+								<tr>
+									<th>신고기관<span class="must">*</span></th>
+									<td colspan="3">
+										<!-- 신고기관명 -->
+										<input type="text" id="신고기관" name="신고기관" title="신고기관" size="35" maxlength="30" value="Declaration Agency" /> <input type="image" onclick="alert('신고기관조회');return false;"src="../images/common/btn-zoom.png" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 신고정보 영역 끝 -->
+						<h2 class="area-title">신고인</h2>
+						<!-- 신고인정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>신고인구분<span class="must">*</span></th>
+									<td>
+										<!-- 신고인구분 -->
+										<input type="radio" name="신고인구분코드" title="신고인구분" value="private" /> private
+										<input type="radio" name="신고인구분코드" title="신고인구분" value="body corporate" checked="checked" /> body corporate
+									</td>
+									<th>납세자고유번호<span class="must">*</span></th>
+									<td>
+										<!-- 납세자고유번호 -->
+										<input type="text" id="납세자고유번호" name="납세자고유번호" title="납세자고유번호" value="207196079" size="40" maxlength="30" />
+									</td>
+								</tr>
+								<tr>
+									<th>신고인<span class="must">*</span></th>
+									<td>
+										<!-- 신고인 -->
+										<input type="text" id="신고인" name="신고인" title="신고인" value="yacob" size="40" maxlength="15" />
+									</td>
+									<th>대표자</th>
+									<td>
+										<!-- 대표자 -->
+										<input type="text" id="대표자" name="대표자" title="대표자" value="sahle" size="40" maxlength="15" />
+									</td>
+								</tr>
+								<tr>
+									<th>업체<span class="must">*</span></th>
+									<td>
+										<!-- 업체 -->
+										<input type="text" id="업체" name="업체" title="업체" value="SP LLC Dream Production" size="40" maxlength="150" />
+									</td>
+									<th>업체납세고유번호<span class="must">*</span></th>
+									<td>
+										<!-- 업체납세고유번호 -->
+										<input type="text" id="업체납세고유번호" name="업체납세고유번호" title="업체납세고유번호" value="B.N." size="40" maxlength="150" />
+									</td>
+								</tr>
+								<tr>
+									<th>전화번호<span class="must">*</span></th>
+									<td>
+										<!-- 신청자전화번호 -->
+										<input type="text" id="신청자전화번호" name="신청자전화번호" title="전화번호" value="(251-11)3-72 81 11" size="40" maxlength="14" />
+									</td>
+									<th>팩스번호</th>
+									<td>
+										<!-- 신청자팩스번호 -->
+										<input type="text" id="신청자팩스번호" name="신청자팩스번호" title="팩스번호" value="(251-11)3-72 81 15" size="40" maxlength="10" />
+									</td>
+								</tr>
+								<tr>
+									<th>주소<span class="must">*</span></th>
+									<td colspan="3">
+										<!-- 신고인주소 -->
+										<input type="text" id="Region" name="Region" title="Region" size="30" maxlength="30" value="Region" /> <input type="image" onclick="alert('Region조회');return false;"src="../images/common/btn-zoom.png" />
+										<input type="text" id="Zone/Sub-city" name="Zone/Sub-city" title="Zone/Sub-city" size="30" maxlength="30" value="Zone/Sub-city" /> <input type="image" onclick="alert('Zone/Sub-city조회');return false;"src="../images/common/btn-zoom.png" />
+										<input type="text" id="Woreda" name="Woreda" title="Woreda" size="30" maxlength="30" value="Woreda" /> <input type="image" onclick="alert('Woreda조회');return false;"src="../images/common/btn-zoom.png" />
+										<input type="text" id="Kebele" name="Kebele" title="Kebele" value="Kebele" size="30" maxlength="10" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<input type="text" id="House No" name="House No" title="House No" value="House No" size="30" maxlength="10" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<input type="text" id="P.O.BOX" name="P.O.BOX" title="P.O.BOX" value="P.O.BOX" size="30" maxlength="10" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 신고인정보 영역 끝 -->
+						<h2 class="area-title">수입자</h2>
+						<!-- 수입자정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>수입자구분<span class="must">*</span></th>
+									<td>
+										<!-- 수입자구분 -->
+										<input type="radio" name="수입자구분코드" title="수입자구분" value="private" /> private
+										<input type="radio" name="수입자구분코드" title="수입자구분" value="body corporate" checked="checked" /> body corporate
+									</td>
+									<th>납세고유번호<span class="must">*</span></th>
+									<td>
+										<!-- 납세고유번호 -->
+										<input type="text" id="납세고유번호" name="납세고유번호" title="납세고유번호" value="207196079" size="40" maxlength="30" />
+									</td>
+								</tr>
+								<tr>
+									<th>수입자<span class="must">*</span></th>
+									<td>
+										<!-- 수입자 -->
+										<input type="text" id="수입자" name="수입자" title="수입자" value="yacob" size="40" maxlength="15" />
+									</td>
+									<th>대표자</th>
+									<td>
+										<!-- 대표자 -->
+										<input type="text" id="대표자" name="대표자" title="대표자" value="sahle" size="40" maxlength="15" />
+									</td>
+								</tr>
+								<tr>
+									<th>업체명<span class="must">*</span></th>
+									<td>
+										<!-- 업체명 -->
+										<input type="text" id="업체명" name="업체명" title="업체명" value="SP LLC Dream Production" size="40" maxlength="150" />
+									</td>
+									<th>업체납세고유번호<span class="must">*</span></th>
+									<td>
+										<!-- 업체납세고유번호 -->
+										<input type="text" id="업체납세고유번호" name="업체납세고유번호" title="업체납세고유번호" value="B.N." size="40" maxlength="150" />
+									</td>
+								</tr>
+								<tr>
+									<th>전화번호<span class="must">*</span></th>
+									<td>
+										<!-- 수입자전화번호 -->
+										<input type="text" id="수입자전화번호" name="수입자전화번호" title="전화번호" value="(251-11)3-72 81 11" size="40" maxlength="14" />
+									</td>
+									<th>팩스번호</th>
+									<td>
+										<!-- 수입자팩스번호 -->
+										<input type="text" id="수입자팩스번호" name="수입자팩스번호" title="팩스번호" value="(251-11)3-72 81 15" size="40" maxlength="10" />
+									</td>
+								</tr>
+								<tr>
+									<th>주소<span class="must">*</span></th>
+									<td colspan="3">
+										<!-- 수입자주소 -->
+										<input type="text" id="Region" name="Region" title="Region" size="30" maxlength="30" value="Region" /> <input type="image" onclick="alert('Region조회');return false;"src="../images/common/btn-zoom.png" />
+										<input type="text" id="Zone/Sub-city" name="Zone/Sub-city" title="Zone/Sub-city" size="30" maxlength="30" value="Zone/Sub-city" /> <input type="image" onclick="alert('Zone/Sub-city조회');return false;"src="../images/common/btn-zoom.png" />
+										<input type="text" id="Woreda" name="Woreda" title="Woreda" size="30" maxlength="30" value="Woreda" /> <input type="image" onclick="alert('Woreda조회');return false;"src="../images/common/btn-zoom.png" />
+										<input type="text" id="Kebele" name="Kebele" title="Kebele" value="Kebele" size="30" maxlength="10" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<input type="text" id="House No" name="House No" title="House No" value="House No" size="30" maxlength="10" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<input type="text" id="P.O.BOX" name="P.O.BOX" title="P.O.BOX" value="P.O.BOX" size="30" maxlength="10" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 수입자정보 영역 끝 -->
+						<h2 class="area-title">일반</h2>
+						<!-- 일반정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>AWB/Bill of lading No.</th>
+									<td>
+										<!-- AWB/Bill of lading No. -->
+										<input type="text" id="AWB/Bill of lading No." name="AWB/Bill of lading No." title="AWB/Bill of lading No." size="40" maxlength="30" value="" />
+									</td>
+									<th>Invoice No.</th>
+									<td>
+										<!-- Invoice No. -->
+										<input type="text" id="Invoice No." name="Invoice No." title="Invoice No." size="40" maxlength="30" value="" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 일반정보 영역 끝 -->
+						<h2 class="area-title">물품</h2>
+						<!-- 물품정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>HS Code<span class="must">*</span></th>
+									<td>
+										<!-- Hs Code -->
+										<input type="text" id="Hs Code" name="Hs Code" title="Hs Code" size="35" maxlength="30" value="9999-99-9999" /> <input type="image" onclick="alert('Hs Code조회');return false;"src="../images/common/btn-zoom.png" />
+									</td>
+									<th>Product Type</th>
+									<td>
+										<!-- Product Type -->
+										<input type="text" id="Product Type" name="Product Type" title="Product Type" value="" size="40" maxlength="300" />
+									</td>
+								</tr>
+								<tr>
+									<th>원산지<span class="must">*</span></th>
+									<td colspan="3">
+										<!-- 원산지 -->
+										<input type="text" id="원산지" name="원산지" title="원산지" size="35" maxlength="30" value="usa" /> <input type="image" onclick="alert('원산지조회');return false;"src="../images/common/btn-zoom.png" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 물품정보 영역 끝 -->
+						<!-- 물품정보 정보 영역 시작 -->
+						<div class="page-info-area">
+							<div class="align_r">
+								<a href="javascript:alert('템플릿다운로드');" class="btn-01 round"><span>템플릿다운로드</span></a>
+								<a href="javascript:alert('물품엑셀업로드화면');" class="btn-01 round"><span>엑셀업로드</span></a>
+								<a href="javascript:alert('물품엑셀다운로드화면');" class="btn-01 round"><span>엑셀다운로드</span></a>
+								<a href="javascript:alert('물품행추가');" class="btn-01 round"><span>추가</span></a>
+								<a href="javascript:alert('물품행수정');" class="btn-01 round"><span>수정</span></a>
+								<a href="javascript:alert('물품행삭제');" class="btn-01 round"><span>삭제</span></a>
+							</div>
+							<div class="clear:both;"></div>
+						</div>
+						<!-- 물품정보 정보 영역 끝 -->
+						<!-- 물품정보 영역 시작 -->
+						<div class="grid-area">
+							<table summary="" style="word-wrap:break-word;word-break:break-all;">
+								<thead>
+									<tr>
+										<th width="30"><img src="../images/common/icon_select.png" align="middle" alt="선택" /></th>
+										<th width="40">번호</th>
+										<th>Hs Code<span class="must">*</span></th>
+										<th>Product Type</th>
+										<th>원산지<span class="must">*</span></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><input type="radio" name="그리드선택0" title="선택" value="" /></td>
+										<td>1</td>
+										<td>9999-99-9999<input type="hidden" name="HS코드0" value="100KG" /></td>
+										<td><input type="hidden" name="식물학명0" value="fruits" /></td>
+										<td>usa<input type="hidden" name="원산지 국가0" value="" /></td>
+									</tr>
+									<tr>
+										<td><input type="radio" name="그리드선택0" title="선택" value="" /></td>
+										<td>2</td>
+										<td>9999-99-9999<input type="hidden" name="HS코드0" value="100KG" /></td>
+										<td><input type="hidden" name="식물학명0" value="fruits" /></td>
+										<td>usa<input type="hidden" name="원산지 국가0" value="" /></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- 물품정보 영역 끝 -->
+						<h2 class="area-title">첨부문서정보</h2>
+						<!-- 첨부문서정보 영역 시작 -->
+						<div class="grid-area">
+							<table summary="" style="word-wrap:break-word;word-break:break-all;">
+								<thead>
+									<tr>
+										<th width="40">번호</th>
+										<th width="400">첨부문서명</th>
+										<th>필수여부</th>
+										<th>첨부</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td class="align_l">Business License</td>
+										<td>Mandatory</td>
+										<td><input type="file" name="첨부문서명0" /></td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td class="align_l">Investment Permit</td>
+										<td>Option</td>
+										<td><input type="file" name="첨부문서명0" /></td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td class="align_l">NGO certificate</td>
+										<td>Option</td>
+										<td><input type="file" name="첨부문서명0" /></td>
+									</tr>
+									<tr>
+										<td>4</td>
+										<td class="align_l">Way Bill</td>
+										<td>Mandatory</td>
+										<td><input type="file" name="첨부문서명0" /></td>
+									</tr>
+									<tr>
+										<td>5</td>
+										<td class="align_l">Pre-import Permit</td>
+										<td>Mandatory</td>
+										<td><input type="file" name="첨부문서명0" /></td>
+									</tr>
+									<tr>
+										<td>6</td>
+										<td class="align_l">Invoice</td>
+										<td>Mandatory</td>
+										<td><input type="file" name="첨부문서명0" /></td>
+									</tr>
+									<tr>
+										<td>7</td>
+										<td class="align_l">Certificate of analysis for veterinary drug , feed & sterile medical devices</td>
+										<td>Mandatory</td>
+										<td><input type="file" name="첨부문서명0" /></td>
+									</tr>
+									<tr>
+										<td>8</td>
+										<td class="align_l">Packing List</td>
+										<td>Mandatory</td>
+										<td><input type="file" name="첨부문서명0" /></td>
+									</tr>
+									<tr>
+										<td>9</td>
+										<td class="align_l">Certificate of origin</td>
+										<td>Mandatory</td>
+										<td><input type="file" name="첨부문서명0" /></td>
+									</tr>
+									<tr>
+										<td>10</td>
+										<td class="align_l">Customs Declaration</td>
+										<td>Mandatory</td>
+										<td><input type="file" name="첨부문서명0" /></td>
+									</tr>
+									<tr>
+										<td>11</td>
+										<td class="align_l">Donation Certificate (For Donations)</td>
+										<td>Mandatory</td>
+										<td><input type="file" name="첨부문서명0" /></td>
+									</tr>
+									<tr>
+										<td>12</td>
+										<td class="align_l">Veterinary Health Certificate for animal feed</td>
+										<td>Mandatory</td>
+										<td><input type="file" name="첨부문서명0" /></td>
+									</tr>
+									<tr>
+										<td>13</td>
+										<td class="align_l">GMO free certificate for  animal feed</td>
+										<td>Mandatory</td>
+										<td><input type="file" name="첨부문서명0" /></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- 첨부문서정보 영역 끝 -->
+					</form>
+					<hr class="split" />
+					<div class="btn-area">
+						<div class="align_r">
+							<a href="#" class="btn-03 round" onclick="popupEvent('UI-POT-0202-001Q_불러오기조회');return false;">불러오기</a>
+							<a href="#" class="btn-03 round">임시저장</a>
+							<a href="#" class="btn-03 round">오류검증</a>
+							<a href="#" class="btn-03 round">전송</a>
+							<a href="./UI-POT-0402-001S_신청서작성.html" class="btn-03 round">취소</a>
+						</div>
+						<div style="clear:both;"></div>
+					</div>
+				</div>
+				<div class="clear:both;"></div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="footer-copyright">
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

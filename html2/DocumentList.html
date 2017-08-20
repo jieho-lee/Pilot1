@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	<script type="text/javascript" src="../js/common/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="../js/common/common2.js"></script>
+	<script type="text/javascript">
+		$( document ).ready( function(){
+			$('input:radio[name=rdAttach]').bind( 'click' , function(){
+				window.close();
+			});
+		});
+	</script>
+	<title>Document List</title>
+</head>
+<body>
+	<div class="wrap-body">
+		<div class="content">
+			<div class="content-work">
+				<div class="work-area">
+					<h2 class="page-title">
+					Document List
+					</h2>
+					<form id="stbiAppBscs" name="stbiAppBscs" enctype="multipart/form-data">
+						<input type="hidden" name="searchCondition" value="${searchCondition}" />
+						<!--<h2 class="area-title">Search Condition</h2>-->
+						<br><br>
+						<!-- 조회 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Document Type</th>
+									<td>
+										<input type="text" id="Document Type" name="Document Type" title="Document Type" value="" size="3" maxlength="7" />
+									</td>
+									<th>Attachment Document</th>
+									<td>
+										<input type="text" id="Attachment Document" name="Attachment Document" title="Attachment Document" value="" size="20" maxlength="7" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 조회 영역 끝 -->	
+					</form>
+						<div class="btn-area">
+							<div class="align_l">
+								<a href="#" class="btn-03 round">Reset</a>
+							</div>
+							<div class="align_r">
+								<a href="./DocumentList.html?search" class="btn-03 round">Search</a>
+							</div>
+							<div style="clear:both;"></div>
+							<hr class="split" />
+						</div>
+						
+						<!-- 조회결과 영역 시작 -->
+						<div class="grid-area" id="afterSearch">
+							<table summary="" style="word-wrap:break-word;word-break:break-all;">
+								<thead>
+									<tr>
+										<th width="30"><img src="../images/common/icon_select.png" align="middle" alt="선택" /></th>
+										<th width="100">Document Type</th>
+										<th width="150">Attachment Document</th>
+										<th width="50">Usage Type</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><input type="radio" name="rdAttach" title="선택" value="" /></td>
+										<td>100</td>
+										<td class="align_l">Pro-forma Invoice</td>
+										<td>Mandatory</td>
+									</tr>
+									<tr>
+										<td><input type="radio" name="rdAttach" title="선택" value="" /></td>
+										<td>101</td>
+										<td class="align_l">Investment licence</td>
+										<td>Mandatory</td>
+									</tr>
+									<tr>
+										<td><input type="radio" name="rdAttach" title="선택" value="" /></td>
+										<td>102</td>
+										<td class="align_l">Certificate of origin/ Free Sale Certificate(for medical device)</td>
+										<td>Mandatory</td>
+									</tr>
+									<tr>
+										<td><input type="radio" name="rdAttach" title="선택" value="" /></td>
+										<td>103</td>
+										<td class="align_l">Donation Certificate (for donation)</td>
+										<td>Mandatory</td>
+									</tr>
+									<tr>
+										<td><input type="radio" name="rdAttach" title="선택" value="" /></td>
+										<td>104</td>
+										<td class="align_l">Support letter from Ministry of Health or Regional Health Offices if required</td>
+										<td>Mandatory</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- 조회결과 영역 끝 -->
+						<!-- 조회결과 그리드 영역 끝 -->
+						<div class="paging">
+							<a href="#" class="ibtn"><img src="../images/common/btn-first.png" /></a>
+							<a href="#" class="ibtn"><img src="../images/common/btn-prev.png" /></a>
+							<a href="#" class="on">1</a>
+							<a href="#" class="ibtn"><img src="../images/common/btn-next.png" /></a>
+							<a href="#" class="ibtn"><img src="../images/common/btn-last.png" /></a>
+						</div>
+				</div>
+				<div class="clear:both;"></div>
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>

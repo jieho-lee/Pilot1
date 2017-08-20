@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	
+
+	<script type="text/javascript" src="../js/common/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript">
+		$( document ).ready( function(){
+			var temp=location.href.split("?");
+
+			if(temp[1] != undefined || temp[1] != null){
+
+				var data=temp[1].split(":");
+				
+				if(data[0] == 'search'){
+					$('#beforeSearch').hide();
+					$('#afterSearch').show();
+					$('#totCnt').html("124");
+					$('.paging').show();
+				}else{
+					$('#afterSearch').hide();
+					$('#beforeSearch').show();
+					$('#totCnt').html("0");
+					$('.paging').hide();
+				}
+				
+				//처리상태 변경(접수통보 -> 수수료부과)
+				/*if(data[1] != undefined){
+					$('#'+data[1]).html("수수료부과");
+				}*/
+			}	else {
+				$('#afterSearch').hide();
+				$('#beforeSearch').show();
+				$('#totCnt').html("0");
+				$('.paging').hide();
+			}
+
+	
+		});
+		
+		function popupEvent(fileName) {
+			var popupSize = 'width=1050,height=610,status=no,scrollbars=yes,resizable=yes';
+			var url = './' + fileName + '.html?search';
+			window.open(url, '', popupSize);
+		}
+		
+		
+		
+	</script>
+	<title>Selectivity Result</title>
+</head>
+<body>
+	<div class="wrap-body">
+		<div class="content">
+			<div class="content-work">
+				<div class="work-area">
+					<h2 class="page-title">
+					Selectivity Result
+					</h2>
+					<form id="formDeclaration" name="formDeclaration" method="post" enctype="multipart/form-data">
+						<input type="hidden" id="commodityTr_num" name="commodityTr_num" value="3" />
+						<br>
+						
+						
+						<!-- 신고정보 영역 시작 -->
+						<!--<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Selectivity Date</th>
+									<td>
+										07/06/2017
+									</td>
+									<th>Selectivity Result</th>
+									<td>
+										R
+									</td>
+								</tr>
+								<tr>
+									<th>Criteria Registration Number</th>
+									<td>
+										MA-HQRM-2017-00031
+									</td>
+									<th>Matched Item No.</th>
+									<td>
+										0
+									</td>
+								</tr>
+							</table>
+						</div>-->
+						<!-- 신고정보 영역 끝 -->
+						<!-- List 영역 시작 -->
+						<h2 class="area-title">List</h2>
+						<div class="grid-area">
+							<table summary="" style="word-wrap:break-word;word-break:break-all;" id="attachTable">
+								<thead>
+									<tr>
+										<th width="200">Criteria Registration Number</th>
+										<th width="120">Selectivity Result</th>
+										<th width="120">Matched Item No.</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>MA-HQRM-2017-00031</td>
+										<td>S</td>
+										<td>0</td>
+									</tr>
+									<tr>
+										<td>MA-HQRM-2017-00030</td>
+										<td>R</td>
+										<td>0</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- List 영역 끝 -->
+						<h2 class="area-title">Detail</h2>
+						<!-- Detail 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Declaration Type</th>
+									<td colspan="3">
+										<!-- 신고일자 -->
+										FMHA-PIA
+									</td>
+								</tr>
+								<tr>
+									<th>Regime</th>
+									<td colspan="3">
+										<!-- 신고일자 -->
+										
+									</td>
+								</tr>
+								<tr>
+								<th>Selectivity Date</th>
+									<td colspan="3">
+										<!-- 신고번호 -->
+										07/06/2017
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Criteria Registration Number</th>
+									<td colspan="3">
+										<!-- 신고일자 -->
+										MA-HQRM-2017-00029
+									</td>
+								</tr>
+								<tr>
+									<th>Type of Selectivity</th>
+									<td colspan="3">
+										<!-- 신고일자 -->
+										Red
+									</td>
+								</tr>
+								<tr>
+									<th>Customs Office</th>
+									<td colspan="3">
+										<!-- 신고일자 -->
+										
+									</td>
+								</tr>
+								<tr>
+									<th>Period of Validity</th>
+									<td colspan="3">
+										<!-- 신고일자 -->
+										01/01/2017 ~ 31/12/2017
+									</td>
+								</tr>
+								<tr>
+									<th>Criteria Description</th>
+									<td colspan="3">
+										<!-- 신고일자 -->
+										<textarea id="비고" name="비고" title="비고" style="width: 96%;" rows="3" maxlength="4000" placeholder="" readonly="readonly">CRMS_PHYSICAL</textarea>
+									</td>
+								</tr>
+								<tr>
+									<th>Inspection Guideline</th>
+									<td colspan="3">
+										<!-- 신고일자 -->
+										<textarea id="비고" name="비고" title="비고" style="width: 96%;" rows="3" maxlength="4000" placeholder="" readonly="readonly">Selected for Full Physical examination by CRMS</textarea>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="grid-area">
+							<table summary="" style="word-wrap:break-word;word-break:break-all;" id="attachTable">
+								<thead>
+									<tr>
+										<th width="200">Applied(Y/N)</th>
+										<th width="200">Criteria Status</th>
+										<th width="200">Registration Date</th>
+										<th width="200">Registered by</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Y</td>
+										<td></td>
+										<td>10/06/2017 12:11:32</td>
+										<td>MANAGER</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- Detail 영역 끝 -->
+						
+						
+					</form>
+					<hr class="split" />
+					<div class="btn-area">
+						<div class="align_r">
+							<a href="javascript:window.close();" class="btn-03 round">Cancel</a>
+						</div>
+						<div style="clear:both;"></div>
+					</div>
+				</div>
+				<div class="clear:both;"></div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="footer-copyright">
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

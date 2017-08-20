@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	<script type="text/javascript" src="../js/common/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="../js/common/common2.js"></script>
+	<script type="text/javascript">
+		$( document ).ready( function(){
+			var temp=location.href.split("?");
+
+			if(temp[1] != undefined || temp[1] != null){
+
+				var data=temp[1].split(":");
+				
+				if(data[0] == 'search'){
+					$('#beforeSearch').hide();
+					$('#afterSearch').show();
+					$('#totCnt').html("251");
+					$('.paging').show();
+				}else{
+					$('#afterSearch').hide();
+					$('#beforeSearch').show();
+					$('#totCnt').html("0");
+					$('.paging').hide();
+				}
+			}	else {
+				$('#afterSearch').hide();
+				$('#beforeSearch').show();
+				$('#totCnt').html("0");
+				$('.paging').hide();
+			}
+	
+		});
+	</script>
+	<title>Notice Details</title>
+</head>
+<body>
+	<div class="wrap-body">
+		<div class="content">
+			<div class="content-work">
+				<div class="work-area">
+					<h2 class="page-title">
+					Notice Details
+					</h2>
+					<form id="stbiAppBscs" name="stbiAppBscs" enctype="multipart/form-data">
+						<input type="hidden" name="searchCondition" value="${searchCondition}" />
+						<!--<h2 class="area-title">Search Condition</h2>-->
+						<br><br>
+						<!-- 조회 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="16%" />
+									<col width="34%" />
+									<col width="16%" />
+									<col width="34%" />
+								</colgroup>
+								<tr>
+									<th>Reference No.</th>
+									<td colspan="3">
+										<!-- 신고번호 -->
+										<input type="text" id="신고번호1" name="신고번호1" title="신고번호" value="207196079" size="10" maxlength="8" readonly="readonly" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="" size="2" maxlength="4" readonly="readonly" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="" size="5" maxlength="7" readonly="readonly" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 조회 영역 끝 -->	
+						<br><br>
+						<h2 class="area-title">General</h2>
+						<!-- 일반정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Port of Entry</th>
+									<td>
+										<!-- 입국항 -->
+										
+									</td>
+									<th>Method of Payment</th>
+									<td>
+										<!-- 지불방법 -->
+										
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 일반정보 영역 끝 -->
+					</form>
+						
+				</div>
+				<div class="clear:both;"></div>
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>

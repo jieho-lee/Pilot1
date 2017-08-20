@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="stylesheet" type="text/css" href="../css/common.css" />
+  <script type="text/javascript" src="../js/common/jquery-1.11.0.min.js"></script>
+  <script>
+    $(function(){
+      $(".input-area td").css({"border" : "0"});
+    });
+
+    function chkOpen() {
+      if ($("#address1").val() != "") {
+        $("#address2").removeAttr("disabled");
+      }
+      if ($("#address2").val() != "") {
+        $("#address3").removeAttr("disabled");
+      }
+    }
+
+  </script>
+  <style type="text/css">
+    body {
+      overflow:hidden;
+    }
+</style>
+
+</head>
+
+<body>
+  <div class="wrap-body">
+    <div class="content">
+      <div class="content-work" style="width : 30%;">
+        <div class="work-area"  style="width : 30%; margin-left: 30px; margin-top: 50px;">
+          <h2 class="page-title" style="width : 200px;">
+					Address Search
+					</h2>
+          <form id="stbiAppBscs" name="stbiAppBscs" enctype="multipart/form-data">
+            <input type="hidden" name="searchCondition" value="${searchCondition}" />
+
+            <div class="input-area" >
+              <table>
+                <tr>
+                  <td>
+                    <select id="address1" name="Region" title="Region" onclick="chkOpen();">
+                      <option value="">SELECT</option>
+                      <option value="TIGRAY">TIGRAY</option>
+                      <option value="OROMIA">OROMIA</option>
+                      <option value="AMHARA">AMHARA</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select id="address2" name="Region" title="Region" disabled="disabled" onclick="chkOpen();">
+                      <option value="">SELECT</option>
+                      <option value="SOUTH">SOUTH</option>
+                      <option value="NOURTH">NOURTH</option>
+                    </select>
+                  </td>
+                  <td>
+                    <select id="address3" name="Region" title="Region" disabled="disabled">
+                      <option value="">SELECT</option>
+                      <option value="Hintalo Wajirat">Hintalo Wajirat</option>
+                      <option value="ENDERTA">ENDERTA</option>
+                      <option value="RAYA AZABO">RAYA AZABO</option>
+                    </select>
+                  </td>
+                </tr>
+              </table>
+              <br/>
+              <table class="input-area">
+                <tr>
+                  <td>
+                    <input type="text" id="address4" name="adress" title="adress" size="50" maxlength="40" value="Adigudom, 03" />
+                  </td>
+                </tr>
+              </table>
+              <br/>
+              <div class="page-info-area">
+                <div>
+                  <a href="javascript:window.close();" class="btn-01 round"><span>ok</span></a>
+                  <a href="javascript:window.close();" class="btn-01 round"><span>cancel</span></a>
+                </div>
+                <div class="clear:both;"></div>
+              </div>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+</html>

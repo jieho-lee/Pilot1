@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	<script type="text/javascript" src="../js/common/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript">
+	$( document ).ready( function(){
+		/* 초기상태 */
+		//큰 조직의 일부
+		$('#jojik1_0').hide();
+		$('#jojik1_1').hide();
+		$('#jojik1_2').hide();
+		
+		//Certification Body 여부
+		$('#CertificationBody1').hide();
+		$('#CertificationBody2').hide();
+		
+		//outsourced Process 여부
+		$('#outsourcedProcess1').hide();
+		$('#outsourcedProcess2').hide();
+		
+		//consultancy 여부
+		$('#consultancy1').hide();
+		$('#consultancy2').hide();
+		
+		
+		//회사의 큰 조직의 일부 여부		
+		$('input:radio[name=jojik1]').bind( 'click' , function(){
+			var jojik1Value = $(this).val();
+			
+			if(jojik1Value == "Yes"){
+				$('#jojik1_0').show();
+				$('#jojik1_1').show();
+				$('#jojik1_2').show();
+			}else if(jojik1Value == "No"){
+				$('#jojik1_0').hide();
+				$('#jojik1_1').hide();
+				$('#jojik1_2').hide();
+			}
+		});
+		
+		//회사의 큰 조직의 일부 여부		
+		$('input:radio[name=CertificationBody]').bind( 'click' , function(){
+			var CertificationBodyValue = $(this).val();
+			
+			if(CertificationBodyValue == "Yes"){
+				$('#CertificationBody1').show();
+				$('#CertificationBody2').show();
+			}else if(CertificationBodyValue == "No"){
+				$('#CertificationBody1').hide();
+				$('#CertificationBody2').hide();
+			}
+		});
+		
+		//outsourced process 여부
+		$('input:radio[name=outsourcedProcess]').bind( 'click' , function(){
+			var outsourcedProcessValue = $(this).val();
+			
+			if(outsourcedProcessValue == "Yes"){
+				$('#outsourcedProcess1').show();
+				$('#outsourcedProcess2').show();
+			}else if(outsourcedProcessValue == "No"){
+				$('#outsourcedProcess1').hide();
+				$('#outsourcedProcess2').hide();
+			}
+		});
+		
+		//consultancy 여부
+		$('input:radio[name=consultancy]').bind( 'click' , function(){
+			var consultancyValue = $(this).val();
+			
+			if(consultancyValue == "Yes"){
+				$('#consultancy1').show();
+				$('#consultancy2').show();
+			}else if(consultancyValue == "No"){
+				$('#consultancy1').hide();
+				$('#consultancy2').hide();
+			}
+		});
+		
+	});
+	</script>
+	<title>품질증명서 신청서 등록</title>
+</head>
+<body>
+	<div class="wrap-body">
+		<div class="content">
+			<div class="content-work">
+				<div class="work-area">
+					<h2 class="page-title">
+					품질증명서 신청서 등록
+					</h2>
+					<form id="stbiAppBscs" name="stbiAppBscs" enctype="multipart/form-data">
+						<input type="hidden" name="searchCondition" value="${searchCondition}" />
+						<h2 class="area-title">신고</h2>
+						<!-- 신고정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>신고번호<span class="must">*</span></th>
+									<td>
+										<!-- 신고번호 -->
+										<input type="text" id="신고번호1" name="신고번호1" title="신고번호" value="207196079" size="10" maxlength="8" readonly="readonly" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="2017" size="2" maxlength="4" readonly="readonly" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="0000003" size="5" maxlength="7" readonly="readonly" /> <input type="button" onclick="alert('신고번호조회');return false;" value="번호생성" class="btn-02 round" />
+									</td>
+									<th>신고일자<span class="must">*</span></th>
+									<td>
+										<!-- 신고일자 -->
+										<input type="text" id="신고일자" name="신고일자" title="신고일자" value="07/06/2017" size="12" maxlength="10" readonly="readonly" /> <a href="#" onclick="return false;"><img src="../images/common/btn-cal.png" align="middle" alt="달력" /></a>
+									</td>
+								</tr>
+								<tr>
+									<th>신고기관<span class="must">*</span></th>
+									<td>
+										<!-- 신고기관명 -->
+										<input type="text" id="신고기관" name="신고기관" title="신고기관" size="35" maxlength="30" value="Declaration Agency" /> <input type="image" onclick="alert('신고기관조회');return false;"src="../images/common/btn-zoom.png" />
+									</td>
+									<th>신고구분<span class="must">*</span></th>
+									<td>
+										<!-- 신고구분 -->
+										<input type="radio" name="신고구분코드" title="신고구분" value="import" checked="checked" /> Import
+										<input type="radio" name="신고구분코드" title="신고구분코드" value="export" /> Export
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 신고정보 영역 끝 -->
+						<h2 class="area-title">신고인</h2>
+						<!-- 신고인정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>신고인구분<span class="must">*</span></th>
+									<td>
+										<!-- 신고인구분 -->
+										<input type="radio" name="신고인구분코드" title="신고인구분" value="private" /> private
+										<input type="radio" name="신고인구분코드" title="신고인구분" value="body corporate" checked="checked" /> body corporate
+									</td>
+									<th>납세자고유번호<span class="must">*</span></th>
+									<td>
+										<!-- 납세자고유번호 -->
+										<input type="text" id="납세자고유번호" name="납세자고유번호" title="납세자고유번호" value="207196079" size="40" maxlength="30" />
+									</td>
+								</tr>
+								<tr>
+									<th>신고인<span class="must">*</span></th>
+									<td>
+										<!-- 신고인 -->
+										<input type="text" id="신고인" name="신고인" title="신고인" value="yacob" size="40" maxlength="15" />
+									</td>
+									<th>대표자</th>
+									<td>
+										<!-- 대표자 -->
+										<input type="text" id="대표자" name="대표자" title="대표자" value="sahle" size="40" maxlength="15" />
+									</td>
+								</tr>
+								<tr>
+									<th>업체<span class="must">*</span></th>
+									<td>
+										<!-- 업체 -->
+										<input type="text" id="업체" name="업체" title="업체" value="SP LLC Dream Production" size="40" maxlength="150" />
+									</td>
+									<th>업체납세고유번호<span class="must">*</span></th>
+									<td>
+										<!-- 업체납세고유번호 -->
+										<input type="text" id="업체납세고유번호" name="업체납세고유번호" title="업체납세고유번호" value="B.N." size="40" maxlength="150" />
+									</td>
+								</tr>
+								<tr>
+									<th>전화번호<span class="must">*</span></th>
+									<td>
+										<!-- 신청자전화번호 -->
+										<input type="text" id="신청자전화번호" name="신청자전화번호" title="전화번호" value="(251-11)3-72 81 11" size="40" maxlength="14" />
+									</td>
+									<th>팩스번호</th>
+									<td>
+										<!-- 신청자팩스번호 -->
+										<input type="text" id="신청자팩스번호" name="신청자팩스번호" title="팩스번호" value="(251-11)3-72 81 15" size="40" maxlength="10" />
+									</td>
+								</tr>
+								<tr>
+									<th>주소<span class="must">*</span></th>
+									<td colspan="3">
+										<!-- 신고인주소 -->
+										<input type="text" id="Region" name="Region" title="Region" size="30" maxlength="30" value="Region" /> <input type="image" onclick="alert('Region조회');return false;"src="../images/common/btn-zoom.png" />
+										<input type="text" id="Zone/Sub-city" name="Zone/Sub-city" title="Zone/Sub-city" size="30" maxlength="30" value="Zone/Sub-city" /> <input type="image" onclick="alert('Zone/Sub-city조회');return false;"src="../images/common/btn-zoom.png" />
+										<input type="text" id="Woreda" name="Woreda" title="Woreda" size="30" maxlength="30" value="Woreda" /> <input type="image" onclick="alert('Woreda조회');return false;"src="../images/common/btn-zoom.png" />
+										<input type="text" id="Kebele" name="Kebele" title="Kebele" value="Kebele" size="30" maxlength="10" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<input type="text" id="House No" name="House No" title="House No" value="House No" size="30" maxlength="10" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<input type="text" id="P.O.BOX" name="P.O.BOX" title="P.O.BOX" value="P.O.BOX" size="30" maxlength="10" />
+									</td>
+								</tr>
+								<tr>
+									<th>회사구분</th>
+									<td>
+										<!-- 회사구분 -->
+										<input type="text" id="회사구분" name="회사구분" title="회사구분" value="" size="40" maxlength="14" />
+									</td>
+									<th>회사규모(세후연매출)</th>
+									<td>
+										<!-- 회사규모(세후연매출) -->
+										<input type="text" id="회사규모(세후연매출)" name="회사규모(세후연매출)" title="회사규모(세후연매출)" value="111,111,111" size="40" maxlength="10" />
+									</td>
+								</tr>
+								<tr>
+									<th colspan="4">본사(위 주소와 다른경우)</th>
+								</tr>
+								<tr>
+									<th>Address</th>
+									<td colspan="3">
+										<!-- Address -->
+										<input type="text" id="Address" name="Address" title="Address" value="" size="114" maxlength="14" />
+									</td>
+								</tr>
+								<tr>
+									<th>Tel<span class="must">*</span></th>
+									<td>
+										<!-- Tel -->
+										<input type="text" id="Tel" name="Tel" title="Tel" value="(251-11)3-72 81 11" size="40" maxlength="14" />
+									</td>
+									<th>Fax</th>
+									<td>
+										<!-- Fax -->
+										<input type="text" id="Fax" name="Fax" title="Fax" value="(251-11)3-72 81 15" size="40" maxlength="10" />
+									</td>
+								</tr>
+								<tr>
+									<th colspan="4">Chief Executive /Managing Director</th>
+								</tr>
+								<tr>
+									<th>이름<span class="must">*</span></th>
+									<td>
+										<!-- 이름 -->
+										<input type="text" id="이름" name="이름" title="이름" value="" size="40" maxlength="14" />
+									</td>
+									<th>직책</th>
+									<td>
+										<!-- 직책 -->
+										<input type="text" id="직책" name="직책" title="직책" value="" size="40" maxlength="10" />
+									</td>
+								</tr>
+								<tr>
+									<th>Tel<span class="must">*</span></th>
+									<td>
+										<!-- 이름 -->
+										<input type="text" id="Tel" name="Tel" title="Tel" value="" size="40" maxlength="14" />
+									</td>
+									<th>Mobile</th>
+									<td>
+										<!-- Mobile -->
+										<input type="text" id="Mobile" name="Mobile" title="Mobile" value="" size="40" maxlength="10" />
+									</td>
+								</tr>
+								<tr>
+									<th>경영진<span class="must">*</span></th>
+									<td>
+										<!-- 경영진 -->
+										<input type="text" id="경영진" name="경영진" title="경영진" value="" size="40" maxlength="14" />
+									</td>
+									<th>회사설립일자</th>
+									<td>
+										<!-- 회사설립일자 -->
+										<input type="text" id="회사설립일자" name="회사설립일자" title="회사설립일자" value="07/06/2017" size="12" maxlength="10" readonly="readonly" /> <a href="#" onclick="return false;"><img src="../images/common/btn-cal.png" align="middle" alt="달력" /></a>
+									</td>
+								</tr>
+								<tr>
+									<th>관련된 법적의무</th>
+									<td colspan="3">
+										<!-- 관련된 법적의무 -->
+										<input type="text" id="관련된 법적의무" name="관련된 법적의무" title="관련된 법적의무" value="" size="114" maxlength="14" />
+									</td>
+								</tr>
+								<tr>
+									<th colspan="4">만약 귀사의 다른 사무실이 전반적으로 증명서에 기여한다면, 그러한 사무실, 주소, 직원 수, 전화번호, 팩스 번호 및 각 사무실에서 수행 된 작업에 대한 설명을 아래 또는 별도의 용지에 설명해주십시오.</th>
+								</tr>
+								<tr>
+									<td colspan="4">
+										<!-- 추가설명 -->
+										<textarea id="추가설명" name="추가설명" title="추가설명" style="width: 97%;" rows="3" maxlength="4000" placeholder=""></textarea>
+									</td>
+								</tr>
+								<tr>
+									<th colspan="3">귀하의 회사는 어떤 큰 조직의 일부입니까?</th>
+									<td>
+										<!-- 조직의 일부 -->
+										<input type="radio" name="jojik1" title="조직의 일부" value="Yes" /> Yes
+										<input type="radio" name="jojik1" title="조직의 일부" value="No" /> No
+									</td>
+								</tr>
+								<tr id="jojik1_0">
+									<th colspan="4">만약 "Yes"면, 지주 조직의 이름과 주소를 알려주십시오.</th>
+								</tr>
+								<tr id="jojik1_1">
+									<th>Name</th>
+									<td colspan="3">
+										<!-- Name -->
+										<input type="text" id="Name" name="Name" title="Name" value="" size="40" maxlength="14" />
+									</td>
+								</tr>
+								<tr id="jojik1_2">
+									<th>Address</th>
+									<td colspan="3">
+										<!-- 관련된 법적의무 -->
+										<input type="text" id="Address" name="Address" title="Address" value="" size="114" maxlength="114" />
+									</td>
+								</tr>
+								<tr>
+									<th colspan="3">Is your company currently registered / certified by other certifying authorities, including ECAE Certification Body?</th>
+									<td>
+										<!-- CertificationBody -->
+										<input type="radio" name="CertificationBody" title="CertificationBody" value="Yes" /> Yes
+										<input type="radio" name="CertificationBody" title="CertificationBody" value="No" /> No
+									</td>
+								</tr>
+								<tr id="CertificationBody1">
+									<th colspan="4">만약 "Yes"면,  세후사항을 적어주십시오.</th>
+								</tr>
+								<tr id="CertificationBody2">
+									<td colspan="4">
+										<!-- details -->
+										<input type="text" id="details" name="details" title="details" value="" size="139" maxlength="114" />
+									</td>
+								</tr>
+								<tr>
+									<th>선호하는 회계 감사 언어</th>
+									<td colspan="3">
+										<!-- language -->
+										<input type="radio" name="language" title="language" value="Amharic" /> Amharic
+										<input type="radio" name="language" title="language" value="English" /> English
+									</td>
+								</tr>
+								<tr>
+									<th colspan="4">참고: 귀하의 신분(status)을 인증하는 면허 기관(무역부/산업기술부) 으로부터 등록 편지(서류)의 사본을 동봉하십시오.</th>
+								</tr>
+							</table>
+						</div>
+						<!-- 신고인정보 영역 끝 -->
+						<h2 class="area-title">CERTIFICATION Standards</h2>
+						<!-- CERTIFICATION Standards 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>인증이 요구되는 인증표준을 표시하십시오.</th>
+									<td colspan="3">
+										<!-- certification standard -->
+										<input type="checkbox" id="certification standard" name="certification standard" /> <span>ISO 9001: 2008</span>
+										<input type="checkbox" id="certification standard" name="certification standard" /> <span>ISO 22000</span>
+										<input type="checkbox" id="certification standard" name="certification standard" /> <span>ISO 14001:1996</span>
+									</td>
+								</tr>
+								<tr>
+									<th>기타 (명시해주십시오)</th>
+									<td colspan="3">
+										<!-- Others -->
+										<input type="text" id="Others" name="Others" title="Others" value="" size="114" maxlength="114" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- CERTIFICATION Standards 영역 끝 -->
+						
+						<h2 class="area-title">BUSINESS DETAILS</h2>
+						<!-- BUSINESS DETAILS 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th colspan="4">인증을 요구하고 제품 범위 또는 서비스를 정의하는 회사활동의 범위를 명확하게 설명해주세요.</th>
+								</tr>
+								<tr>
+									<th colspan="4">설명사항이 인증서에 표시됩니다.</th>
+								</tr>
+								<tr>
+									<td colspan="4">
+										<!-- 설명사항 -->
+										<textarea id="설명사항" name="설명사항" title="설명사항" style="width: 97%;" rows="3" maxlength="4000" placeholder=""></textarea>
+									</td>
+								</tr>
+								<tr>
+									<th colspan="4">귀사의 주요 프로세스를 기재하십시오. </th>
+								</tr>
+								<tr>
+									<td colspan="4">
+										<!-- key processes -->
+										<textarea id="key processes" name="key processes" title="key processes" style="width: 97%;" rows="3" maxlength="4000" placeholder=""></textarea>
+									</td>
+								</tr>
+								<tr>
+									<th colspan="4">인증 요구 사항이 아닌 제조 된 다른 모든 제품 또는 제공 되는 서비스를 기재하십시오.</th>
+								</tr>
+								<tr>
+									<td colspan="4">
+										<!-- services offered -->
+										<textarea id="services offered" name="services offered" title="services offered" style="width: 97%;" rows="3" maxlength="4000" placeholder=""></textarea>
+									</td>
+								</tr>
+								<tr>
+									<th colspan="4">귀사의 주 고객은 누구입니까? </th>
+								</tr>
+								<tr>
+									<td colspan="4">
+										<!-- main customers -->
+										<textarea id="main customers" name="main customers" title="main customers" style="width: 97%;" rows="3" maxlength="4000" placeholder=""></textarea>
+									</td>
+								</tr>
+								<tr>
+									<th colspan="4">귀사의 주요 기술 자원의 유형을 명시 해주십시오.</th>
+								</tr>
+								<tr>
+									<td colspan="4">
+										<!-- technical resources -->
+										<textarea id="technical resources" name="technical resources" title="technical resources" style="width: 97%;" rows="3" maxlength="4000" placeholder=""></textarea>
+									</td>
+								</tr>
+								<tr>
+									<th colspan="3">외주 제작 프로세스가 있습니까?</th>
+									<td>
+										<!--  outsourced process -->
+										<input type="radio" name="outsourcedProcess" title="outsourcedProcess" value="Yes" /> Yes
+										<input type="radio" name="outsourcedProcess" title="outsourcedProcess" value="No" /> No
+									</td>
+								</tr>
+								<tr id="outsourcedProcess1">
+									<th colspan="4">만약 yes면, 아웃소싱되는 프로세스를 명시하십시오.</th>
+								</tr>
+								<tr id="outsourcedProcess2">
+									<td colspan="4">
+										<!-- outsourced process -->
+										<textarea id="outsourced process" name="outsourced process" title="outsourced process" style="width: 97%;" rows="3" maxlength="4000" placeholder=""></textarea>
+									</td>
+								</tr>
+								<tr>
+									<th colspan="3">귀사는 경영 시스템 컨설팅 기관/개인에 의해 상의 받은 적이 있습니까?</th>
+									<td>
+										<!--  consultancy -->
+										<input type="radio" name="consultancy" title="consultancy" value="Yes" /> Yes
+										<input type="radio" name="consultancy" title="consultancy" value="No" /> No
+									</td>
+								</tr>
+								<tr id="consultancy1">
+									<th colspan="4">만약 yes면, 컨설팅 회사/개인의 이름 및 컨설팅 서비스가 제공 되었을 때의 시간을 명시하십시오</th>
+								</tr>
+								<tr id="consultancy2">
+									<td colspan="4">
+										<!-- consultancy -->
+										<textarea id="consultancy organization/individuals" name="consultancy organization/individuals" title="consultancy organization/individuals" style="width: 97%;" rows="3" maxlength="4000" placeholder=""></textarea>
+									</td>
+								</tr>
+								<tr>
+									<th colspan="4">귀사의 안전 요구 사항을 알려주시겠습니까? (만약 가능하다면)</th>
+								</tr>
+								<tr>
+									<td colspan="4">
+										<!-- 설명사항 -->
+										<textarea id="안전 요구 사항" name="안전 요구 사항" title="안전 요구 사항" style="width: 97%;" rows="3" maxlength="4000" placeholder=""></textarea>
+									</td>
+								</tr>
+								<tr>
+									<th colspan="4">언제 귀사의 첫 번째 방문평가가 수행 되기를 원합니까?</th>
+								</tr>
+								<tr>
+									<th colspan="4">
+										<!-- 방문평가 -->
+										a) <input type="text" id="방문평가" name="방문평가" title="방문평가" value="07/06/2017" size="12" maxlength="10" /> <a href="#" onclick="return false;"><img src="../images/common/btn-cal.png" align="middle" alt="달력" /></a>
+									</th>
+								</tr>
+								
+								<tr>
+									<th colspan="3">b) 귀사가 첫번째 방문 평가를 수행하기에 적합하다고 생각하는 시간, 날짜가 준비 되자마자 저희에게 알려주시겠습니까?</th>
+									<td>
+										<!-- 조직의 일부 -->
+										<input type="radio" name="날짜가 준비" title="날짜가 준비" value="Yes" /> Yes
+										<input type="radio" name="날짜가 준비" title="날짜가 준비" value="No" /> No
+									</td>
+								</tr>
+								<tr>
+									<th colspan="3">위의 등록서에 제공된 정보 중 하나라도 잘못이 발견 된 경우, 신청서가 즉시 거부 될 수 있다는 것에 동의합니까?</th>
+									<td>
+										<!-- 동의 -->
+										<input type="radio" name="동의" title="동의" value="Yes" /> Yes
+										<input type="radio" name="동의" title="동의" value="No" /> No
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- BUSINESS DETAILS 영역 끝 -->
+						<h2 class="area-title">Disposition of Staff</h2>
+						<!-- Disposition of Staff 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+								<th colspan="3">총 풀타임 직원의 수</th>
+									<td>
+										<!-- 총 풀타임 직원의 수 -->
+										<input type="text" id="full time employees" name="full time employees" title="full time employees" value="" size="40" maxlength="14" />
+									</td>
+								</tr>
+								<tr>
+									<th>정규직</th>
+									<td>
+										<!-- 정규직 -->
+										<input type="text" id="정규직" name="정규직" title="정규직" value="" size="40" maxlength="15" />
+									</td>
+									<th>비정규직</th>
+									<td>
+										<!-- 비정규직 -->
+										<input type="text" id="비정규직" name="비정규직" title="비정규직" value="" size="40" maxlength="15" />
+									</td>
+								</tr>
+								<th colspan="3">인증 범위에 효과를 미치는 작업을 하는 총 직원 수</th>
+									<td>
+										<!-- 인증 범위 -->
+										<input type="text" id="인증 범위" name="인증 범위" title="인증 범위" value="" size="40" maxlength="14" />
+									</td>
+								</tr>
+								<th colspan="3">설계 및 개발의 총 직원 수 (해당 될 시)</th>
+									<td>
+										<!-- 설계 및 개발 -->
+										<input type="text" id="설계 및 개발" name="설계 및 개발" title="설계 및 개발" value="" size="40" maxlength="14" />
+									</td>
+								</tr>
+								<th colspan="3">제조 및/또는 서비스 활동의 총계</th>
+									<td>
+										<!-- 제조 -->
+										<input type="text" id="제조" name="제조" title="제조" value="" size="40" maxlength="14" />
+									</td>
+								</tr>
+								<th colspan="3">근무 교대 당 직원 수 (해당 될 시)</th>
+									<td>
+										<!-- 근무 교대 -->
+										<input type="text" id="근무 교대" name="근무 교대" title="근무 교대" value="" size="40" maxlength="14" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- Disposition of Staff 영역 끝 -->
+
+					</form>
+					<hr class="split" />
+					<div class="btn-area">
+						<div class="align_r">
+							<a href="#" class="btn-03 round" onclick="popupEvent('UI-POT-0202-001Q_불러오기조회');return false;">불러오기</a>
+							<a href="#" class="btn-03 round">임시저장</a>
+							<a href="#" class="btn-03 round">오류검증</a>
+							<a href="#" class="btn-03 round">전송</a>
+							<a href="./UI-POT-0402-001S_신청서작성.html" class="btn-03 round">취소</a>
+						</div>
+						<div style="clear:both;"></div>
+					</div>
+				</div>
+				<div class="clear:both;"></div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="footer-copyright">
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	<script type="text/javascript" src="../js/common/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="../js/common/common2.js"></script>
+	<script type="text/javascript">
+		$( document ).ready( function(){
+			var temp=location.href.split("?");
+
+			if(temp[1] != undefined || temp[1] != null){
+
+				var data=temp[1].split(":");
+				
+				if(data[0] == 'search'){
+					$('#beforeSearch').hide();
+					$('#afterSearch').show();
+					$('#afterSearch2').show();
+					$('#totCnt').html("251");
+					$('.paging').show();
+					
+					//Reference No 넣기
+					if(data[1] != undefined || data[1] != null){
+						var docSerial=data[1].split("-");
+						
+						$('#docSerial1').val(docSerial[0]);
+						$('#docSerial2').val(docSerial[1]);
+						$('#docSerial3').val(docSerial[2]);
+						$('#docSerial4').val(docSerial[3]);
+						
+					}
+				}else{
+					$('#afterSearch').hide();
+					$('#afterSearch2').hide();
+					$('#beforeSearch').show();
+					$('#totCnt').html("0");
+					$('.paging').hide();
+				}
+			}	else {
+				$('#afterSearch').hide();
+				$('#afterSearch2').hide();
+				$('#beforeSearch').show();
+				$('#totCnt').html("0");
+				$('.paging').hide();
+			}
+	
+		});
+	</script>
+	<title>Declaration History</title>
+</head>
+<body>
+	<div class="wrap-body">
+		<div class="content">
+			<div class="content-work">
+				<div class="work-area">
+					<h2 class="page-title">
+					Declaration History
+					</h2>
+					<form id="stbiAppBscs" name="stbiAppBscs" enctype="multipart/form-data">
+						<!--<h2 class="area-title">Search Condition</h2>-->
+						<br><br>
+						<!-- 조회 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="16%" />
+									<col width="34%" />
+									<col width="16%" />
+									<col width="34%" />
+								</colgroup>
+								<tr>
+									<th>Declaration No.</th>
+									<td colspan="3">
+										<!-- 신고번호 -->
+										<input type="text" id="docSerial1" name="docSerial1" title="docSerial1" value="" size="3" maxlength="4" />-
+										<input type="text" id="docSerial2" name="docSerial2" title="docSerial2" value="" size="1" maxlength="3" />-
+										<input type="text" id="docSerial3" name="docSerial3" title="docSerial3" value="" size="1" maxlength="2" />-
+										<input type="text" id="docSerial4" name="docSerial4" title="docSerial4" value="" size="4" maxlength="5" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 조회 영역 끝 -->	
+					</form>
+						<div class="btn-area">
+							<div class="align_l">
+								<a href="#" class="btn-03 round">Reset</a>
+							</div>
+							<div class="align_r">
+								<a href="./Internal_1.Declaration History.html?search:FMHA-PIA-17-00014" class="btn-03 round">Search</a>
+							</div>
+							<div style="clear:both;"></div>
+							<hr class="split" />
+						</div>
+						<br><br>
+						<!-- 조회결과 영역 시작 -->
+						
+						<div id="afterSearch2">
+						<h2 class="area-title">Declaration General</h2>
+						<!-- Declaration General 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Declaration No.</th>
+									<td>
+										<!-- Declaration No. -->
+										FMHA-PIA-17-00014
+									</td>
+									<th>Declaration Date</th>
+									<td>
+										<!-- Declaration Date -->
+										20/06/2017 16:19:23 
+									</td>
+								</tr>
+								<tr>
+									<th>Ex/Importer</th>
+									<td>
+										<!-- Ex/Importer -->
+										SP LLC Dream Production
+									</td>
+									<th>Declarant</th>
+									<td>
+										<!-- Declarant -->
+										SP LLC Dream Production
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- Declaration General 영역 끝 -->
+						</div>
+						
+						
+						<div class="grid-area" id="afterSearch">
+							<table summary="" style="word-wrap:break-word;word-break:break-all;">
+								<thead>
+									<tr>
+										<th width="40">No.</th>
+										<th width="80">Date</th>
+										<th width="80">Status</th>
+										<th width="110">Action</th>
+										<th width="80">Remarks</th>
+										<th width="80">User</th>
+										<th width="80">Modification Count</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>20/06/2017 16:19:43</td>
+										<td>Received</td>
+										<td></td>
+										<td></td>
+										<td>SYSTEM</td>
+										<td>0</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>20/06/2017 16:19:44</td>
+										<td>Selected</td>
+										<td></td>
+										<td>Red</td>
+										<td>SYSTEM</td>
+										<td>0</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>20/06/2017 16:19:45</td>
+										<td>Assigned</td>
+										<td></td>
+										<td></td>
+										<td>SYSTEM</td>
+										<td>0</td>
+									</tr>
+									<tr>
+										<td>4</td>
+										<td>20/06/2017 16:19:47</td>
+										<td>Accepted</td>
+										<td></td>
+										<td></td>
+										<td>manager1</td>
+										<td>0</td>
+									</tr>
+									<tr>
+										<td>5</td>
+										<td>20/06/2017 17:09:23</td>
+										<td>Verifying</td>
+										<td>Register Verification Result</td>
+										<td></td>
+										<td>CFA02</td>
+										<td>0</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- 조회결과 영역 끝 -->
+				</div>
+				<div class="clear:both;"></div>
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>

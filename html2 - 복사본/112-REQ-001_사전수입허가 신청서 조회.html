@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	<script type="text/javascript" src="../js/common/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript">
+		$( document ).ready( function(){
+			var temp=location.href.split("?");
+			//var data=temp[1].split(":");
+			//var seq1=data[0];
+			//var seq2=data[1];
+			
+			//신고번호 3번째 세팅
+			$('#seq3').val(temp[1]);
+			
+			//수정 화면 이동시 신고번호 3번째 넘김
+			$('#link1').attr("href", "./112-REQ-001_사전수입허가 신청서 등록.html?"+temp[1]);
+		
+		});
+	</script>
+	<title>사전수입허가 신청서 조회</title>
+</head>
+<body>
+	<div class="wrap-body">
+		<div class="content">
+			<div class="content-work">
+				<div class="work-area">
+					<h2 class="page-title">
+					사전수입허가 신청서 조회
+					</h2>
+					<form id="stbiAppBscs" name="stbiAppBscs" enctype="multipart/form-data">
+						<input type="hidden" name="searchCondition" value="${searchCondition}" />
+						<h2 class="area-title">신고</h2>
+						<!-- 신고정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>신고번호<span class="must">*</span></th>
+									<td>
+										<!-- 신고번호 -->
+										<input type="text" id="신고번호1" name="신고번호1" title="신고번호" value="207196079" size="10" maxlength="8" readonly="readonly" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="2017" size="2" maxlength="4" readonly="readonly" />-
+										<input type="text" id="seq3" name="seq3" title="신고번호" value="" size="5" maxlength="7" readonly="readonly" />
+									</td>
+									<th>신고일자<span class="must">*</span></th>
+									<td>
+										<!-- 신고일자 -->
+										<input type="text" id="신고일자" name="신고일자" title="신고일자" value="07/06/2017" size="12" maxlength="10" readonly="readonly" />
+									</td>
+								</tr>
+								<tr>
+									<th>신고기관<span class="must">*</span></th>
+									<td colspan="3">
+										<!-- 신고기관명 -->
+										<input type="text" id="신고기관" name="신고기관" title="신고기관" size="35" maxlength="30" value="Declaration Agency" readonly="readonly" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 신고정보 영역 끝 -->
+						<h2 class="area-title">신고인</h2>
+						<!-- 신고인정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>신고인구분<span class="must">*</span></th>
+									<td>
+										<!-- 신고인구분 -->
+										<input type="radio" name="신고인구분코드" title="신고인구분" value="private" disabled="disabled" /> private
+										<input type="radio" name="신고인구분코드" title="신고인구분" value="body corporate" disabled="disabled" checked="checked" /> body corporate
+									</td>
+									<th>납세자고유번호<span class="must">*</span></th>
+									<td>
+										<!-- 납세자고유번호 -->
+										<input type="text" id="납세자고유번호" name="납세자고유번호" title="납세자고유번호" value="207196079" size="40" maxlength="30" readonly="readonly" />
+									</td>
+								</tr>
+								<tr>
+									<th>신고인<span class="must">*</span></th>
+									<td>
+										<!-- 신고인 -->
+										<input type="text" id="신고인" name="신고인" title="신고인" value="yacob" size="40" maxlength="15" readonly="readonly" />
+									</td>
+									<th>대표자</th>
+									<td>
+										<!-- 대표자 -->
+										<input type="text" id="대표자" name="대표자" title="대표자" value="sahle" size="40" maxlength="15" readonly="readonly" />
+									</td>
+								</tr>
+								<tr>
+									<th>업체<span class="must">*</span></th>
+									<td>
+										<!-- 업체 -->
+										<input type="text" id="업체" name="업체" title="업체" value="SP LLC Dream Production" size="40" maxlength="150" readonly="readonly" />
+									</td>
+									<th>업체납세고유번호<span class="must">*</span></th>
+									<td>
+										<!-- 업체납세고유번호 -->
+										<input type="text" id="업체납세고유번호" name="업체납세고유번호" title="업체납세고유번호" value="B.N." size="40" maxlength="150" readonly="readonly" />
+									</td>
+								</tr>
+								<tr>
+									<th>전화번호<span class="must">*</span></th>
+									<td>
+										<!-- 신청자전화번호 -->
+										<input type="text" id="신청자전화번호" name="신청자전화번호" title="전화번호" value="(251-11)3-72 81 11" size="40" maxlength="14" readonly="readonly" />
+									</td>
+									<th>팩스번호</th>
+									<td>
+										<!-- 신청자팩스번호 -->
+										<input type="text" id="신청자팩스번호" name="신청자팩스번호" title="팩스번호" value="(251-11)3-72 81 15" size="40" maxlength="10" readonly="readonly" />
+									</td>
+								</tr>
+								<tr>
+									<th>주소<span class="must">*</span></th>
+									<td colspan="3">
+										<!-- 신고인주소 -->
+										<input type="text" id="Region" name="Region" title="Region" size="30" maxlength="30" value="Region" readonly="readonly" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<input type="text" id="Zone/Sub-city" name="Zone/Sub-city" title="Zone/Sub-city" size="30" maxlength="30" value="Zone/Sub-city" readonly="readonly" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<input type="text" id="Woreda" name="Woreda" title="Woreda" size="30" maxlength="30" value="Woreda" readonly="readonly" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<input type="text" id="Kebele" name="Kebele" title="Kebele" value="Kebele" size="30" maxlength="10" readonly="readonly" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<input type="text" id="House No" name="House No" title="House No" value="House No" size="30" maxlength="10" readonly="readonly" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<input type="text" id="P.O.BOX" name="P.O.BOX" title="P.O.BOX" value="P.O.BOX" size="30" maxlength="10" readonly="readonly" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 신고인정보 영역 끝 -->
+						<h2 class="area-title">수입자</h2>
+						<!-- 수입자정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>수입자구분<span class="must">*</span></th>
+									<td>
+										<!-- 수입자구분 -->
+										<input type="radio" name="수입자구분코드" title="수입자구분" value="private" disabled="disabled" /> private
+										<input type="radio" name="수입자구분코드" title="수입자구분" value="body corporate" checked="checked" disabled="disabled" /> body corporate
+									</td>
+									<th>납세고유번호<span class="must">*</span></th>
+									<td>
+										<!-- 납세고유번호 -->
+										<input type="text" id="납세고유번호" name="납세고유번호" title="납세고유번호" value="207196079" size="40" maxlength="30" readonly="readonly" />
+									</td>
+								</tr>
+								<tr>
+									<th>수입자<span class="must">*</span></th>
+									<td>
+										<!-- 수입자 -->
+										<input type="text" id="수입자" name="수입자" title="수입자" value="yacob" size="40" maxlength="15" readonly="readonly" />
+									</td>
+									<th>대표자</th>
+									<td>
+										<!-- 대표자 -->
+										<input type="text" id="대표자" name="대표자" title="대표자" value="sahle" size="40" maxlength="15" readonly="readonly" />
+									</td>
+								</tr>
+								<tr>
+									<th>업체명<span class="must">*</span></th>
+									<td>
+										<!-- 업체명 -->
+										<input type="text" id="업체명" name="업체명" title="업체명" value="SP LLC Dream Production" size="40" maxlength="150" readonly="readonly" />
+									</td>
+									<th>업체납세고유번호<span class="must">*</span></th>
+									<td>
+										<!-- 업체납세고유번호 -->
+										<input type="text" id="업체납세고유번호" name="업체납세고유번호" title="업체납세고유번호" value="B.N." size="40" maxlength="150" readonly="readonly" />
+									</td>
+								</tr>
+								<tr>
+									<th>전화번호<span class="must">*</span></th>
+									<td>
+										<!-- 수입자전화번호 -->
+										<input type="text" id="수입자전화번호" name="수입자전화번호" title="전화번호" value="(251-11)3-72 81 11" size="40" maxlength="14" readonly="readonly" />
+									</td>
+									<th>팩스번호</th>
+									<td>
+										<!-- 수입자팩스번호 -->
+										<input type="text" id="수입자팩스번호" name="수입자팩스번호" title="팩스번호" value="(251-11)3-72 81 15" size="40" maxlength="10" readonly="readonly" />
+									</td>
+								</tr>
+								<tr>
+									<th>주소<span class="must">*</span></th>
+									<td colspan="3">
+										<!-- 수입자주소 -->
+										<input type="text" id="Region" name="Region" title="Region" size="30" maxlength="30" value="Region" readonly="readonly" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<input type="text" id="Zone/Sub-city" name="Zone/Sub-city" title="Zone/Sub-city" size="30" maxlength="30" value="Zone/Sub-city" readonly="readonly" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<input type="text" id="Woreda" name="Woreda" title="Woreda" size="30" maxlength="30" value="Woreda" readonly="readonly" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<input type="text" id="Kebele" name="Kebele" title="Kebele" value="Kebele" size="30" maxlength="10" readonly="readonly" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<input type="text" id="House No" name="House No" title="House No" value="House No" size="30" maxlength="10" readonly="readonly" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										<input type="text" id="P.O.BOX" name="P.O.BOX" title="P.O.BOX" value="P.O.BOX" size="30" maxlength="10" readonly="readonly" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 수입자정보 영역 끝 -->
+						<h2 class="area-title">수출자</h2>
+						<!-- 수출자정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="83%" />
+								</colgroup>
+								<tr>
+									<th>수출자<span class="must">*</span></th>
+									<td colspan="3">
+										<!-- 수출자명 -->
+										<input type="text" id="수출자" name="수출자" title="수출자" value="bred" size="40" maxlength="14" readonly="readonly" />
+									</td>
+								</tr>
+								<tr>
+									<th>수출자주소</th>
+									<td colspan="3">
+										<!-- 수출자주소 -->
+										<input type="text" id="수출자주소" name="수출자주소" title="수출자주소" value="Avenue N.W. Washington, D.C" size="114" maxlength="100" readonly="readonly" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 수출자정보 영역 끝 -->
+						<h2 class="area-title">일반</h2>
+						<!-- 일반정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>입국항</th>
+									<td>
+										<!-- 입국항 -->
+										<input type="text" id="입국항" name="입국항" title="입국항" size="35" maxlength="30" value="" readonly="readonly" />
+									</td>
+									<th>지불방법</th>
+									<td>
+										<!-- 지불방법 -->
+										<input type="text" id="지불방법" name="지불방법" title="지불방법" size="35" maxlength="30" value="" readonly="readonly" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 일반정보 영역 끝 -->
+						<h2 class="area-title">물품</h2>
+						<!-- 물품정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>품목설명</th>
+									<td>
+										<!-- 품목설명 -->
+										<input type="text" id="품목설명" name="품목설명" title="품목설명" value="fruits" size="40" maxlength="20" readonly="readonly" />
+									</td>
+									<th>수량<span class="must">*</span></th>
+									<td>
+										<!-- 수량단위코드 -->
+										<input type="text" id="수량" name="수량" title="수량" class="align_r" value="10" style="width: 37%;" maxlength="11,3" readonly="readonly" />
+										<select id="수량단위코드" name="수량단위코드" title="수량단위코드" disabled="disabled">
+											<option value=" (UN) UNIT"> (UN) UNIT</option>
+											<option value=" (GR) GRAM"> (GR) GRAM</option>
+											<option value=" (KG) KILOGRAM"> (KG) KILOGRAM</option>
+											<option value=" (CM) CENTIMETER"> (CM) CENTIMETER</option>
+											<option value=" (M1) METER"> (M1) METER</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>단가(FOB)<span class="must">*</span></th>
+									<td>
+										<!-- 단가(FOB) -->
+										<input type="text" id="단가(FOB)" name="단가(FOB)" title="단가(FOB)" value="" size="40" maxlength="300" readonly="readonly" />
+									</td>
+									<th>금액(FOB)<span class="must">*</span></th>
+									<td>
+										<!-- 단가(FOB) -->
+										<input type="text" id="금액(FOB)" name="금액(FOB)" title="금액(FOB)" value="" size="40" maxlength="300" readonly="readonly" />
+									</td>
+								</tr>
+								<tr>
+									<th>원산지<span class="must">*</span></th>
+									<td colspan="3">
+										<!-- 원산지 -->
+										<input type="text" id="원산지" name="원산지" title="원산지" size="35" maxlength="30" value="usa" readonly="readonly" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 물품정보 영역 끝 -->
+						<!-- 물품정보 영역 시작 -->
+						<div class="grid-area">
+							<table summary="" style="word-wrap:break-word;word-break:break-all;">
+								<thead>
+									<tr>
+										<th width="30"><img src="../images/common/icon_select.png" align="middle" alt="선택" /></th>
+										<th width="40">번호</th>
+										<th>품목설명</th>
+										<th>수량<span class="must">*</span></th>
+										<th>단가(FOB)<span class="must">*</span></th>
+										<th>금액(FOB)<span class="must">*</span></th>
+										<th>원산지<span class="must">*</span></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><input type="radio" name="그리드선택0" title="선택" value="" /></td>
+										<td>1</td>
+										<td>fruits<input type="hidden" name="HS코드0" value="100KG" /></td>
+										<td>10 (UN) UNIT<input type="hidden" name="물품설명0" value="" /></td>
+										<td><input type="hidden" name="무게0" value="" /></td>
+										<td><input type="hidden" name="식물학명0" value="fruits" /></td>
+										<td>usa<input type="hidden" name="원산지 국가0" value="" /></td>
+									</tr>
+									<tr>
+										<td><input type="radio" name="그리드선택0" title="선택" value="" /></td>
+										<td>2</td>
+										<td>fruits<input type="hidden" name="HS코드0" value="100KG" /></td>
+										<td>10 (UN) UNIT<input type="hidden" name="물품설명0" value="" /></td>
+										<td><input type="hidden" name="무게0" value="" /></td>
+										<td><input type="hidden" name="식물학명0" value="fruits" /></td>
+										<td>usa<input type="hidden" name="원산지 국가0" value="" /></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- 물품정보 영역 끝 -->
+						<h2 class="area-title">첨부문서정보</h2>
+						<!-- 첨부문서정보 영역 시작 -->
+						<div class="grid-area">
+							<table summary="" style="word-wrap:break-word;word-break:break-all;">
+								<thead>
+									<tr>
+										<th width="40">번호</th>
+										<th width="400">첨부문서명</th>
+										<th>필수여부</th>
+										<th>첨부</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td class="align_l">Pro-forma Invoice</td>
+										<td>Mandatory</td>
+										<td><input type="file" name="첨부문서명0" /></td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td class="align_l">Pre-import permit application</td>
+										<td>Mandatory</td>
+										<td><input type="file" name="첨부문서명0" /></td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td class="align_l">Pro-forma Invoice</td>
+										<td>Mandatory</td>
+										<td><input type="file" name="첨부문서명0" /></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- 첨부문서정보 영역 끝 -->
+					</form>
+					<hr class="split" />
+					<div class="btn-area">
+						<div class="align_r">
+							<!--<a href="#" class="btn-03 round" onclick="popupEvent('UI-POT-0202-001Q_불러오기조회');return false;">불러오기</a>-->
+							<a href="./112-REQ-001_사전수입허가 신청서 등록.html" id="link1" class="btn-03 round">수정</a>
+							<a href="./1.테스트.html?search" class="btn-03 round">목록</a>
+						</div>
+						<div style="clear:both;"></div>
+					</div>
+				</div>
+				<div class="clear:both;"></div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="footer-copyright">
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

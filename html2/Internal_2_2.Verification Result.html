@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	
+
+	<script type="text/javascript" src="../js/common/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript">
+		$( document ).ready( function(){
+			var temp=location.href.split("?");
+
+			if(temp[1] != undefined || temp[1] != null){
+
+				var data=temp[1].split(":");
+				
+				if(data[0] == 'search'){
+					$('#beforeSearch').hide();
+					$('#afterSearch').show();
+					$('#totCnt').html("124");
+					$('.paging').show();
+				}else{
+					$('#afterSearch').hide();
+					$('#beforeSearch').show();
+					$('#totCnt').html("0");
+					$('.paging').hide();
+				}
+				
+				//처리상태 변경(접수통보 -> 수수료부과)
+				/*if(data[1] != undefined){
+					$('#'+data[1]).html("수수료부과");
+				}*/
+			}	else {
+				$('#afterSearch').hide();
+				$('#beforeSearch').show();
+				$('#totCnt').html("0");
+				$('.paging').hide();
+			}
+
+	
+		});
+		
+		function popupEvent(fileName) {
+			var popupSize = 'width=1050,height=610,status=no,scrollbars=yes,resizable=yes';
+			var url = './' + fileName + '.html?search';
+			window.open(url, '', popupSize);
+		}
+		
+		function validation(){
+			var $obj = $("input[name='chkComplete']:checked");
+			var cnt = $obj.size();
+			
+			if(cnt > 0){
+				alert("Validation Complete");
+			}else{
+				alert("Put a check mark on ‘Verification Complete'");
+			}
+		}
+		
+		function save(){
+			if (confirm("Proceed Assessment?") == true){
+				alert("Successfully saved");
+				window.close();	
+			}else{
+				return;
+			}
+		}
+		
+	</script>
+	<title>Verification Result Registration</title>
+</head>
+<body>
+	<div class="wrap-body">
+		<div class="content">
+			<div class="content-work">
+				<div class="work-area">
+					<h2 class="page-title">
+					Verification Result Registration
+					</h2>
+					<form id="formDeclaration" name="formDeclaration" method="post" enctype="multipart/form-data">
+						<input type="hidden" id="commodityTr_num" name="commodityTr_num" value="3" />
+						<br><br>
+						
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Declaration No.</th>
+									<td>
+										<!-- Declaration No. -->
+										FMHA-PIA-17-00015
+									</td>
+									<th>Declaration Date</th>
+									<td>
+										<!-- Declaration Date -->
+										20/06/2017 16:19:23 
+									</td>
+								</tr>
+								<tr>
+									<th>Ex/Importer</th>
+									<td>
+										<!-- Ex/Importer -->
+										SP LLC Dream Production
+									</td>
+									<th>Declarant</th>
+									<td>
+										<!-- Declarant -->
+										SP LLC Dream Production
+									</td>
+								</tr>
+							</table>
+						</div>
+						
+						<!--<h2 class="area-title">General</h2>
+						<div class="grid-area">
+							<table summary="" style="word-wrap:break-word;word-break:break-all;" id="attachTable">
+								<thead>
+									<tr>
+										<th width="40">State</th>
+										<th width="50">Currency</th>
+										<th width="70">Total Invoice Value</th>
+										<th width="60">Freight Charge</th>
+										<th width="50">Insurance</th>
+										<th width="60">Other Charges</th>
+										<th width="50">Deductions</th>
+										<th width="80">Total Customs Value</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>D</td>
+										<td>USD</td>
+										<td class="align_r">7,000.00</td>
+										<td class="align_r">0.00</td>
+										<td class="align_r">0.00</td>
+										<td class="align_r">0.00</td>
+										<td class="align_r">0.00</td>
+										<td class="align_r">11,500,440.00</td>
+									</tr>
+									<tr>
+										<td>A</td>
+										<td>USD</td>
+										<td class="align_r">7,000.00</td>
+										<td class="align_r">0.00</td>
+										<td class="align_r">0.00</td>
+										<td class="align_r">0.00</td>
+										<td class="align_r">0.00</td>
+										<td class="align_r">11,500,440.00</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<h2 class="area-title">Item</h2>
+						<div class="grid-area">
+							<table summary="" style="word-wrap:break-word;word-break:break-all;" id="attachTable">
+								<thead>
+									<tr>
+										<th width="40" rowspan="2">Item No.</th>
+										<th width="30" rowspan="2">State</th>
+										<th width="50" rowspan="2">HS</th>
+										<th width="70" rowspan="2">Country of <br>Origin</th>
+										<th colspan="2">CPC</th>
+										<th width="70" rowspan="2">Preference Code</th>
+										<th width="70" rowspan="2">Customs Value</th>
+										<th width="70" rowspan="2">FOB</th>
+										<th width="70" rowspan="2">Tax</th>
+									</tr>
+									<tr>
+										<th width="40">EPC</th>
+										<th width="40">APC</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td rowspan="2">1</td>
+										<td>D</td>
+										<td>2941.10.0000</td>
+										<td>KR</td>
+										<td>4000</td>
+										<td>470</td>
+										<td></td>
+										<td class="align_r">11,500,440.00</td>
+										<td class="align_r">7,000.00</td>
+										<td class="align_r">0.00</td>
+									</tr>
+									<tr>
+										<td>A</td>
+										<td>2941.10.0000</td>
+										<td>KR</td>
+										<td>4000</td>
+										<td>470</td>
+										<td></td>
+										<td class="align_r">11,500,440.00</td>
+										<td class="align_r">7,000.00</td>
+										<td class="align_r">0.00</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>-->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>Verification Result Code</th>
+									<td colspan="3">
+										<select id="단위코드" name="단위코드" title="단위코드" style="width:200px;">
+											<option value="Select">Select</option>
+											<option value=""></option>
+											<option value=""></option>
+											<option value=""></option>
+											<option value=""></option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<th>Verification Remarks</th>
+									<td colspan="3">
+										<!-- 신고일자 -->
+										<textarea id="비고" name="비고" title="비고" style="width: 96%;" rows="3" maxlength="4000" placeholder=""></textarea>
+									</td>
+								</tr>
+								<tr>
+									<th>Verification Complete</th>
+									<td colspan="3">
+										<!-- 신고일자 -->
+										<input type="checkbox" id="chkComplete" name="chkComplete" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<hr class="split" />
+						<div class="btn-area">
+						<div class="align_r">
+							<!--<a href="javascript:validation();" class="btn-03 round">Validation</a>-->
+							<a href="javascript:save();" class="btn-03 round">Save</a>
+							<a href="javascript:window.close();" class="btn-03 round">Cancel</a>
+						</div>
+						<div style="clear:both;"></div>
+					</div>
+					<!--<h2 class="area-title">History</h2>
+						<div class="grid-area">
+							<table summary="" style="word-wrap:break-word;word-break:break-all;" id="attachTable">
+								<thead>
+									<tr>
+										<th width="40"></th>
+										<th width="150">TANSAD Version</th>
+										<th width="100">Remarks</th>
+										<th width="150">Registered by</th>
+										<th width="150">Registration Date</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td colspan="5">No data found.</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>-->
+					
+					</form>
+
+				</div>
+				<div class="clear:both;"></div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="footer-copyright">
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

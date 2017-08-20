@@ -1,0 +1,25 @@
+@charset "utf-8";
+ 
+html,body{width:100%;height:100%}
+html{overflow-y:scroll}
+*{font-family:'Merriweather','Tahoma','Verdana','Helvetica','Apple SD Gothic Neo',Sans-serif;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,form,fieldset,p,button{margin:0;padding:0}
+body,h1,h2,h3,h4,input,button,select{font-size:12px;color:#383d41}
+body{background-color:#fff;*word-break:break-all;-ms-word-break:break-all}
+img,fieldset,iframe{border:0 none}
+li{list-style:none}
+input,select,button{vertical-align:middle}
+select{max-width:250px;}
+img{vertical-align:top}
+i,em,address{font-style:normal}
+label,button{cursor:pointer}
+button{margin:0;padding:0}
+a{color:#2f3743;text-decoration:none}
+a:hover{color:#539cdb;text-decoration:none;}
+hr{display:none}
+legend{*width:0}
+table{border-collapse:collapse;border-spacing:0}
+td img{vertical-align:middle;}
+
+input[readonly="readonly"], input[disabled="disabled"], input.Ltext.disabled {background-color:#eee;}
+textarea[readonly="readonly"], textarea[disabled="disabled"], select[disabled="disabled"] {background-color:#eee;}

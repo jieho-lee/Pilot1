@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	<script type="text/javascript" src="../js/common/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="../js/common/common2.js"></script>
+	<script type="text/javascript">
+		$( document ).ready( function(){
+			var temp=location.href.split("?");
+
+			if(temp[1] != undefined || temp[1] != null){
+
+				var data=temp[1].split(":");
+				
+				if(data[0] == 'search'){
+					$('#beforeSearch').hide();
+					$('#afterSearch').show();
+					$('#totCnt').html("251");
+					$('.paging').show();
+					
+					//Reference No 넣기
+					if(data[1] != undefined || data[1] != null){
+						var docSerial=data[1].split("-");
+						
+						$('#docSerial2').val(docSerial[0]);
+						$('#docSerial3').val(docSerial[1]);
+						
+					}
+				}else{
+					$('#afterSearch').hide();
+					$('#beforeSearch').show();
+					$('#totCnt').html("0");
+					$('.paging').hide();
+				}
+			}	else {
+				$('#afterSearch').hide();
+				$('#beforeSearch').show();
+				$('#totCnt').html("0");
+				$('.paging').hide();
+			}
+	
+		});
+	</script>
+	<title>Clearance Processing</title>
+</head>
+<body>
+	<div class="wrap-body">
+		<div class="content">
+			<div class="content-work">
+				<div class="work-area">
+					<h2 class="page-title">
+					Clearance Processing
+					</h2>
+					<form id="stbiAppBscs" name="stbiAppBscs" enctype="multipart/form-data">
+						<input type="hidden" name="searchCondition" value="${searchCondition}" />
+						<!--<h2 class="area-title">Search Condition</h2>-->
+						<br><br>
+						<!-- 조회 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="16%" />
+									<col width="34%" />
+									<col width="16%" />
+									<col width="34%" />
+								</colgroup>
+								<tr>
+									<th>Reference No.</th>
+									<td>
+										<!-- 신고번호 -->
+										<input type="text" id="신고번호1" name="신고번호1" title="신고번호" value="207196079" size="10" maxlength="8" readonly="readonly" />-
+										<input type="text" id="docSerial2" name="docSerial2" title="신고번호" value="" size="2" maxlength="4" />-
+										<input type="text" id="docSerial3" name="docSerial3" title="신고번호" value="" size="5" maxlength="7" />
+									</td>
+									<th>Application No.</th>
+									<td>
+										<!-- 신고번호 -->
+										<input type="text" id="신고번호1" name="신고번호1" title="신고번호" value="" size="4" maxlength="4" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="" size="3" maxlength="3" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="" size="2" maxlength="2" />-
+										<input type="text" id="신고번호2" name="신고번호2" title="신고번호" value="" size="5" maxlength="5" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 조회 영역 끝 -->	
+					</form>
+						<div class="btn-area">
+							<div class="align_l">
+								<a href="#" class="btn-03 round">Reset</a>
+							</div>
+							<div class="align_r">
+								<a href="./4.Clearance Processing.Html?search:2017-0000011" class="btn-03 round">Search</a>
+							</div>
+							<div style="clear:both;"></div>
+							<hr class="split" />
+						</div>
+						<br><br>
+						<!-- 조회결과 영역 시작 -->
+						<div class="grid-area" id="afterSearch">
+							<div id="process">
+								<div class="off">Received</div>
+								<div class="off">Accepted</div>
+								<div class="now">Verifying</div>
+								<div class="off">Inspected</div>
+								<div class="off">Released</div>
+							</div>
+							<table summary="" style="word-wrap:break-word;word-break:break-all;">
+								<thead>
+									<tr>
+										<th width="40">No.</th>
+										<th width="80">Process Status</th>
+										<th width="110">Action</th>
+										<th width="110">Date</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>1</td>
+										<td>Received</td>
+										<td></td>
+										<td>20/06/2017 16:19:43</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td>Selected</td>
+										<td></td>
+										<td>20/06/2017 16:20:03</td>
+									</tr>
+									<tr>
+										<td>3</td>
+										<td>Assigned</td>
+										<td></td>
+										<td>20/06/2017 16:20:35</td>
+									</tr>
+									<tr>
+										<td>4</td>
+										<td>Accepted</td>
+										<td></td>
+										<td>20/06/2017 16:21:11</td>
+									</tr>
+									<tr>
+										<td>5</td>
+										<td>Verifying</td>
+										<td>Register Verification Result</td>
+										<td>20/06/2017 17:09:23</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<!-- 조회결과 영역 끝 -->
+				</div>
+				<div class="clear:both;"></div>
+			</div>
+		</div>
+		
+	</div>
+</body>
+</html>

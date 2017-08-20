@@ -1,0 +1,37 @@
+10
+
+dir
+5863
+https://cni-consulting.iptime.org:8443/svn/cni/MetaSourceGenerator/src/main/webapp/output/html/UZBSW/images
+https://cni-consulting.iptime.org:8443/svn/cni
+
+
+
+2015-03-08T15:53:09.091219Z
+5269
+jhkim
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+efe2ccbc-a013-a149-b03f-5e186b0d1548
+
+common
+dir
+
+printsample
+dir
+
+sampleimage
+dir
+

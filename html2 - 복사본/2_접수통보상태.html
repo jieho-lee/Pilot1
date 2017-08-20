@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<link rel="stylesheet" type="text/css" href="../css/common.css" />
+	<script type="text/javascript" src="../js/common/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript">
+		var temp=location.href.split("?");
+		
+		$( document ).ready( function(){
+			//alert("접수통보 : " + temp[1]);
+			//신고번호(207196079-2017-000000X)
+			$('#docSerial').val(temp[1]);
+		});
+		var taxPayment = function(){
+			if (confirm("수수료를 부과하시겠습니까?") == true){
+				//alert(temp[1]);
+				$('#notification').attr('action', './1.테스트.html?search:'+temp[1]).submit();
+     		return false;
+			} else {
+				return;
+			}
+			
+		};
+	</script>
+	<title>접수통보</title>
+</head>
+<body>
+	<div class="wrap-body">
+		<div class="content">
+			<div class="content-work">
+				<div class="work-area">
+					<h2 class="page-title">
+					접수통보
+					</h2>
+					<form id="notification" name="notification" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="searchCondition" value="${searchCondition}" />
+						<h2 class="area-title">신고</h2>
+						<!-- 신고정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="33%" />
+									<col width="17%" />
+									<col width="33%" />
+								</colgroup>
+								<tr>
+									<th>신고번호<span class="must">*</span></th>
+									<td>
+										<!-- 신고번호 -->
+										<input type="text" id="docSerial" name="docSerial" title="신고번호" value="" size="30" maxlength="30" readonly="readonly" />
+									</td>
+									<th>신고일자<span class="must">*</span></th>
+									<td>
+										<!-- 신고일자 -->
+										<input type="text" id="신고일자" name="신고일자" title="신고일자" value="07/06/2017" size="12" maxlength="10" readonly="readonly" />
+									</td>
+								</tr>
+								<tr>
+									<th>신고기관<span class="must">*</span></th>
+									<td colspan="3">
+										<!-- 신고기관명 -->
+										<input type="text" id="신고기관" name="신고기관" title="신고기관" size="35" maxlength="30" value="Declaration Agency" readonly="readonly" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 신고정보 영역 끝 -->
+						
+						<h2 class="area-title">수수료</h2>
+						<!-- 수출자정보 영역 시작 -->
+						<div class="input-area">
+							<table>
+								<colgroup>
+									<col width="17%" />
+									<col width="83%" />
+								</colgroup>
+								<tr>
+									<th>수수료<span class="must">*</span></th>
+									<td colspan="3">
+										<!-- 수수료 -->
+										<input type="text" id="수수료" name="수수료" title="수수료" value="" size="40" maxlength="14" />
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- 수출자정보 영역 끝 -->
+					</form>
+					<hr class="split" />
+					<div class="btn-area">
+						<div class="align_r">
+							<a href="#" class="btn-03 round" onClick="javascript:taxPayment();">수수료부과</a>
+							<a href="./1.테스트.html?search" class="btn-03 round">취소</a>
+						</div>
+						<div style="clear:both;"></div>
+					</div>
+				</div>
+				<div class="clear:both;"></div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="footer-copyright">
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>
